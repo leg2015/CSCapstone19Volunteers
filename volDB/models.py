@@ -8,6 +8,8 @@ class Organization(models.Model):
     opportunities = models.TextField(db_column='volOpportunities')
     website = models.URLField(db_column='volURL', blank=False)
     notes = models.TextField(db_column='notes')
+    def __str__(self):
+        return self.name
 
 
 class Phone(models.Model):
@@ -35,5 +37,5 @@ class Address(models.Model):
     addressID = models.AutoField(db_column = 'addressID', primary_key = True)
     street = models.CharField(db_column='street', max_length=100)
     city = models.CharField(db_column='city', max_length=20)
-    state = models.CharField(db_column='state')
-    zipCode = models.IntegerField(db_column='zipCode', max_length=50)
+    state = models.CharField(db_column='state', max_length=20)
+    zipCode = models.IntegerField(db_column='zipCode')
