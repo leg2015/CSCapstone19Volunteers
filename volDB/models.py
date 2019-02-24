@@ -5,9 +5,9 @@ class Organization(models.Model):
     name = models.CharField(db_column='orgName', max_length = 100, blank=False)
     orgID = models.AutoField(db_column='orgID', primary_key=True)
     mission = models.TextField(db_column='missionStatement')
-    opportunities = models.TextField(db_column='volOpportunities')
+    opportunities = models.TextField(db_column='volOpportunities', blank=True)
     website = models.URLField(db_column='volURL', blank=False)
-    notes = models.TextField(db_column='notes')
+    notes = models.TextField(db_column='notes', blank=True)
     def __str__(self):
         return self.name
 
