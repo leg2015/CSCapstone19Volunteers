@@ -18,9 +18,9 @@ from django.urls import path
 from django.conf.urls import url, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls), # include admin path 
     url(r'^volDB/', include('volDB.urls')),
-    path('', include('volDB.urls'))
+    path('', include('volDB.urls')) # include path to volDB urls
 ]
 
 
