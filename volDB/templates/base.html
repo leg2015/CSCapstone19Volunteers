@@ -1,5 +1,3 @@
-<!-- TODO: attempt to extend base.html -->
-
 {% load static %}
 <!-- load in static files for access from ./static -->
 <!doctype html>
@@ -38,44 +36,7 @@
     </nav>
   </div>
 
-  <!-- TODO: attempt to create 'content' block to render in base.html -->
-  <!-- Landing Page -->
-  <div id="main">
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Welcome to Voluntunity</h1>
-        <p class="lead text-muted">A tool for locating nonprofit and volunteer organizations
-          in the Williamson County, Texas area and beyond.</p>
 
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">
-            <h5> I'm looking for </h5>
-          </label>
-          <select class="form-control" id="categoryDropdown">
-            <option>Any</option>
-            {% for category in categories %}
-            <option> {{ category.category }}</option>
-            {% endfor %}
-          </select>
-        </div>
-
-
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">
-            <h5> nonprofit organizations near </h5>
-          </label>
-          <select class="form-control" id="locationDropdown">
-            {% for location in locations %}
-            <option> {{ location.location }} </option>
-            {% endfor %}
-          </select>
-        </div>
-        <p>
-          <button class="fill"> <a href="#">SEARCH</a> </button>
-        </p>
-      </div>
-    </section>
-  </div>
   <!-- JavaScript plugins for BootStrap -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
