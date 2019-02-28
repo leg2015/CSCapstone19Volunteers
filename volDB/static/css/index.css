@@ -1,0 +1,70 @@
+#nav {
+  background-color: #FFCD00;
+}
+
+.jumbotron-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+a, p, h5 {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+/* button styling and fill inspired from https://codepen.io/anon/pen/MxYBMq 
+  designed to match Southwestern's style guide */
+
+button {
+  position: relative;
+  height: 50px;
+  width: 175px;
+  margin: 10px 7px;
+  padding: 5px 5px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #FFCD00;
+  border: 3px #FFCD00 solid;
+  text-transform: uppercase;
+  outline: 0;
+  overflow:hidden;
+  background: white;
+  z-index: 1;
+  cursor: pointer;
+  text-decoration: none;
+  transition:         0.25s ease;
+  -o-transition:      0.25s ease;
+  -ms-transition:     0.25s ease;
+  -moz-transition:    0.25s ease;
+  -webkit-transition: 0.25s ease;
+}
+
+button a {
+  text-decoration: none;
+  color: #FFCD00;
+}
+
+button a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.fill:hover a {
+  color: white;
+}
+
+.fill:before {
+  content: "";
+  position: absolute;
+  background: #FFCD00;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: -1;
+  -webkit-transition: top 0.25s ease;
+}
+
+.fill:hover:before {
+  top: 0;
+}
