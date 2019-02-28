@@ -1,3 +1,7 @@
+<!-- TODO: attempt to extend base.html -->
+
+{% load static %}
+<!-- load in static files for access from ./static -->
 <!doctype html>
 <html lang="en">
 
@@ -13,84 +17,15 @@
   <!-- Google fonts import following SU style guide -->
   <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700|Playfair+Display" rel="stylesheet">
 
+  <!-- custom style sheet -->
+  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
   <title>CS Capstone 2019: Volunteer Database</title>
 
-
   <style>
-    #nav {
-      background-color: #FFCD00;
-    }
-
-    .jumbotron-heading {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-    }
-
-    a, p, h5 {
-      font-family: 'Nanum Gothic', sans-serif;
-    }
-
-    /* button styling and fill inspired from:
-    https://codepen.io/anon/pen/MxYBMq */
-    
-    button {
-      position: relative;
-      height: 50px;
-      width: 175px;
-      margin: 10px 7px;
-      padding: 5px 5px;
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: 2px;
-      color: #FFCD00;
-      border: 3px #FFCD00 solid;
-      text-transform: uppercase;
-      outline: 0;
-      overflow:hidden;
-      background: white;
-      z-index: 1;
-      cursor: pointer;
-      text-decoration: none;
-      transition:         0.25s ease;
-      -o-transition:      0.25s ease;
-      -ms-transition:     0.25s ease;
-      -moz-transition:    0.25s ease;
-      -webkit-transition: 0.25s ease;
-    }
-
-    button a {
-      text-decoration: none;
-      color: #FFCD00;
-    }
-
-    button a:hover {
-      text-decoration: none;
-      color: white;
-    }
-
-    .fill:hover a {
-      color: white;
-    }
-
-    .fill:before {
-      content: "";
-      position: absolute;
-      background: #FFCD00;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      top: 100%;
-      z-index: -1;
-      -webkit-transition: top 0.25s ease;
-    }
-
-    .fill:hover:before {
-      top: 0;
-    }
 
   </style>
 </head>
-
 
 <body>
   <!-- Navbar -->
@@ -103,38 +38,44 @@
     </nav>
   </div>
 
+  <!-- TODO: attempt to create 'content' block to render in base.html -->
   <!-- Landing Page -->
-  <section id="main" class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Welcome to Voluntunity</h1>
-      <p class="lead text-muted">A tool for locating nonprofit and volunteer organizations in the Williamson County, Texas
-        area and beyond.</p>
+  <div id="main">
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Welcome to Voluntunity</h1>
+        <p class="lead text-muted">A tool for locating nonprofit and volunteer organizations
+          in the Williamson County, Texas area and beyond.</p>
 
-      <div class="form-group">
-        <label for="exampleFormControlSelect1"> <h5> I'm looking for </h5> </label>
-        <select class="form-control" id="categoryDropdown">
-          <option>Any</option> <!-- here, do we want to utilize the template to fill in these menu options? -->
-          <option>Abuse</option>
-          <option>Children</option>
-          <option>Nature Preservation</option>
-        </select>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">
+            <h5> I'm looking for </h5>
+          </label>
+          <select class="form-control" id="categoryDropdown">
+            <option>Any</option>
+            {% for category in categories %}
+            <option> {{ category.category }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">
+            <h5> nonprofit organizations near </h5>
+          </label>
+          <select class="form-control" id="locationDropdown">
+            {% for location in locations %}
+            <option> {{ location.location }} </option>
+            {% endfor %}
+          </select>
+        </div>
+        <p>
+          <button class="fill"> <a href="#">SEARCH</a> </button>
+        </p>
       </div>
-
-
-      <div class="form-group">
-        <label for="exampleFormControlSelect1"> <h5> nonprofit organizations near </h5> </label>
-        <select class="form-control" id="locationDropdown">
-          <option>Georgetown</option>
-          <option>Round Rock</option>
-          <option>North Austin</option>
-        </select>
-      </div>
-      <p>
-        <button class="fill"> <a href="#">SEARCH</a> </button>
-      </p>
-    </div>
-  </section>
-
+    </section>
+  </div>
   <!-- JavaScript plugins for BootStrap -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -143,6 +84,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+
 </body>
 
 </html>
