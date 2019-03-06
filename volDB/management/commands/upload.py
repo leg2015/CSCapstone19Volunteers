@@ -18,35 +18,39 @@ class Command(BaseCommand):
                 
                 if created:
                     org.save()
-                    organizationId = org.orgID
-                
-                    # row[2] = categories
-                    categories = row[2]
-                    # for cat in categories:
-                    catObj = Category.objects.get_or_create(category=catagories)
+                organizationId = org.orgID
+            
+                # row[2] = categories
+                categories = row[2]
+                # for cat in categories:
+                catObj, createCat = Category.objects.get_or_create(category=categories)
+                if createCat:
                     catObj.save()
-                    org.category.add(catObj)
-                    org.save()
+                org.category.add(catObj)
+                org.save()
 
-                    # row[3] = city/location
-                    location = row[3]
-                    # for loc in locations:
-                    cityObj = Location.objects.get_or_create(location=location)
+                # row[3] = city/location
+                location = row[3]
+                # for loc in locations:
+                cityObj, createCity = Location.objects.get_or_create(location=location)
+                if createCity:
                     cityObj.save()
-                    org.category.add(cityObj)
-                    org.save()
+                org.location.add(cityObj)
+                org.save()
 
-                    # row[6] = phone number
-                    numbers = row[6]
-                    # for num in numbers:
-                    Phone.objects.get_or_create(phone=numbers, orgid=organizationId)
-                        
-                    # row[5] = address
+                # row[6] = phone number
+                numbers = row[6]
+                # for num in numbers:
+                newPhone = Phone.objects.create(phone=numbers, orgid=org)
+                newPhone.save()
+                    
+                # row[5] = address
 
-                    # row[7] = email
-                    emails = row[7]
-                    # for eaddress in emails:
-                    Email.objects.get_or_create(email=emails, orgID=organizationId)
+                # row[7] = email
+                emails = row[7]
+                # for eaddress in emails:
+                newEmail = Email.objects.create(email=emails, orgID=org)
+                newEmail.save()
             count += 1
     def handle(self, *args, **options):
         # call the function to import data
