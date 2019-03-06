@@ -1,3 +1,5 @@
+/* --------- GLOBAL STYLES ---------  */
+
 #nav {
   background-color: #FFCD00;
 }
@@ -11,6 +13,29 @@ a, p, h5 {
   font-family: 'Nanum Gothic', sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+
+/* --------- RESULTS STYLES ---------  */
+
+#map {
+  background-color: blue;
+}
+
+#resultsList {
+  background-color: red;
+}
+
+
+/* --------- BUTTON STYLE ---------  */
 /* button styling and fill inspired from https://codepen.io/anon/pen/MxYBMq 
   designed to match Southwestern's style guide */
 
@@ -44,7 +69,7 @@ button a {
   color: #FFCD00;
 }
 
-button a:hover {
+button:hover{
   text-decoration: none;
   color: white;
 }
