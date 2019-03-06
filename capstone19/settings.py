@@ -99,7 +99,7 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '/cloudsql/capstone19:us-central1:volunteer-db',
-            'NAME': 'volDB',
+            'NAME': 'testImport',
             'USER': 'defaultUser',
             'PASSWORD': 'V0lunte3r2K19!',
         }
@@ -116,7 +116,7 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3307',
-            'NAME': 'volDB',
+            'NAME': 'testImport',
             'USER': 'defaultUser',
             'PASSWORD': 'V0lunte3r2K19!'
         }
