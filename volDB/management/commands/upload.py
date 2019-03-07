@@ -16,18 +16,16 @@ class Command(BaseCommand):
             if count != 0:
                 org, created = Organization.objects.update_or_create(name=row[0], mission=row[1], opportunities=row[4], website=row[8], notes=row[9])
                 
-                if created:
-                    org.save()
-                organizationId = org.orgID
+                org.save()
             
                 # row[2] = categories
-                categories = row[2]
-                # for cat in categories:
-                catObj, createCat = Category.objects.get_or_create(category=categories)
-                if createCat:
-                    catObj.save()
-                org.category.add(catObj)
-                org.save()
+                categories = row[2].split('`')
+                for cat in categories:
+                    catObj, createCat = Category.objects.get_or_create(category=cat)
+                    if createCat:
+                        catObj.save()
+                    org.category.add(catObj)
+                    org.save()
 
                 # row[3] = city/location
                 location = row[3]
