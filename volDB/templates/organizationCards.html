@@ -1,0 +1,15 @@
+{% extends 'results.html' %}
+{% block organizationCards %}
+
+  {% for organization in results %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"> {{ organization.name }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted"> {{ organization.Location }}</h6>
+      <p class="card-text"> {{ organization.mission }}</p>
+      <a href="{{ organization.website }}" class="">Website</a>
+    </div>
+  </div>
+  {% endfor %}
+
+{% endblock %}

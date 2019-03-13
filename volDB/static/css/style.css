@@ -27,13 +27,14 @@ a:hover {
 /* --------- RESULTS STYLES ---------  */
 
 #map {
-  background-color: blue;
+  background-color: peachpuff;
 }
 
 #resultsList {
-  background-color: red;
+  padding: 10px;
+  height: 630px; /* TODO: figure out how to fix height to screen size */
+  overflow: auto;
 }
-
 
 /* --------- BUTTON STYLE ---------  */
 /* button styling and fill inspired from https://codepen.io/anon/pen/MxYBMq 
