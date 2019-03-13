@@ -36,8 +36,14 @@
   <!-- Landing Page -->
   <div id="main" class="container-fluid">
     <div class="row">
-      <div class="col-7" id="resultsList">resultsList</div>
-
+      <div class="col-7" id="resultsList">resultsList
+      <ul>
+          {% for organization in results %}
+          <li> {{ organization.name }} </li>
+          {% endfor %}
+        <li>
+      </ul>
+      </div>
       <div class="col-5" id="map">map</div>
     </div>
   </div>
