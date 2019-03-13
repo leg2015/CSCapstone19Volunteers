@@ -28,27 +28,27 @@ class Command(BaseCommand):
                     org.save()
 
                 # row[3] = city/location
-                location = row[3]
-                # for loc in locations:
-                cityObj, createCity = Location.objects.get_or_create(location=location)
-                if createCity:
-                    cityObj.save()
-                org.location.add(cityObj)
-                org.save()
+                location = row[3].split('`')
+                for loc in locations:
+                    cityObj, createCity = Location.objects.get_or_create(location=location)
+                    if createCity:
+                        cityObj.save()
+                    org.location.add(cityObj)
+                    org.save()
 
                 # row[6] = phone number
-                numbers = row[6]
-                # for num in numbers:
-                newPhone = Phone.objects.create(phone=numbers, orgid=org)
-                newPhone.save()
+                numbers = row[6].split('`')
+                for num in numbers:
+                    newPhone = Phone.objects.create(phone=numbers, orgid=org)
+                    newPhone.save()
                     
                 # row[5] = address
 
                 # row[7] = email
-                emails = row[7]
-                # for eaddress in emails:
-                newEmail = Email.objects.create(email=emails, orgID=org)
-                newEmail.save()
+                emails = row[7].split('`')
+                for eaddress in emails:
+                    newEmail = Email.objects.create(email=emails, orgID=org)
+                    newEmail.save()
             count += 1
     def handle(self, *args, **options):
         # call the function to import data
