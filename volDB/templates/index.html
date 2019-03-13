@@ -46,38 +46,13 @@
 
         <!-- Django form for category and location -->
         <form action="{% url 'results' %}" method="POST">
-
-          {% comment %}
-           <div class="form-group">
-            <label for="exampleFormControlSelect1">
-              <h5> I'm looking for </h5>
-            </label>
-            <select class="form-control" id="categoryDropdown">
-              <option>Any</option>
-              {% for category in categories %}
-              <option> {{ category.category }}</option>
-              {% endfor %}
-            </select>
-          </div>
-
           <div class="form-group">
-            <label for="exampleFormControlSelect1">
-              <h5> nonprofit organizations near </h5>
-            </label>
-            <select class="form-control" id="locationDropdown">
-              {% for location in locations %}
-              <option> {{ location.location }} </option>
-              {% endfor %}
-            </select>
-          </div> {% endcomment %}
-          {% csrf_token %}
-          {{ form }}
+            {% csrf_token %}
+            {{ form }}
+          </div>
           <button type="submit" class="fill"><span>SEARCH</span></button>
         </form>
 
-        {% comment %} <p>
-          <a href="{% url 'results'%}"><button class="fill">SEARCH</button></a>
-        </p> {% endcomment %}
       </div>
     </section>
   </div>
