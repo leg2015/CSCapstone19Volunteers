@@ -19,7 +19,7 @@ class Command(BaseCommand):
                 org.save()
             
                 # row[2] = categories
-                categories = row[2].split('`')
+                categories = str(row[2]).split("`")
                 for cat in categories:
                     catObj, createCat = Category.objects.get_or_create(category=cat)
                     if createCat:
@@ -28,26 +28,26 @@ class Command(BaseCommand):
                     org.save()
 
                 # row[3] = city/location
-                location = row[3].split('`')
-                for loc in locations:
-                    cityObj, createCity = Location.objects.get_or_create(location=location)
+                location = str(row[3]).split("`")
+                for loc in location:
+                    cityObj, createCity = Location.objects.get_or_create(location=loc)
                     if createCity:
                         cityObj.save()
                     org.location.add(cityObj)
                     org.save()
 
                 # row[6] = phone number
-                numbers = row[6].split('`')
+                numbers = str(row[6]).split("`")
                 for num in numbers:
-                    newPhone = Phone.objects.create(phone=numbers, orgid=org)
+                    newPhone = Phone.objects.create(phone=num, orgid=org)
                     newPhone.save()
                     
                 # row[5] = address
 
                 # row[7] = email
-                emails = row[7].split('`')
+                emails = str(row[7]).split("`")
                 for eaddress in emails:
-                    newEmail = Email.objects.create(email=emails, orgID=org)
+                    newEmail = Email.objects.create(email=eaddress, orgID=org)
                     newEmail.save()
             count += 1
     def handle(self, *args, **options):
