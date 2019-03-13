@@ -16,19 +16,16 @@
   <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700|Playfair+Display" rel="stylesheet">
 
   <!-- custom style sheet -->
-  <link rel="stylesheet" href="{% static 'css/index.css' %}">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
   <title>CS Capstone 2019: Volunteer Database</title>
 
-  <style>
-
-  </style>
 </head>
 
 <body>
   <!-- Navbar -->
   <div id="nav" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-bold">Voluntunity</h5>
+    <h5 class="my-0 mr-md-auto font-weight-bold"> <a href="{% url 'index' %}">Voluntunity</a> </h5>
     <nav class="my-2 my-md-0 mr-md-3">
       <a class="btn btn-outline-secondary" href="#">BROWSE</a>
       <a class="p-2 text-dark" href="#">ABOUT</a> <!-- use AJAX to load in about page? use pop-up? -->
@@ -36,6 +33,9 @@
     </nav>
   </div>
 
+  <!-- Dynamic content block: loads index.html and results.html-->
+  {% block content %}
+  {% endblock %}
 
   <!-- JavaScript plugins for BootStrap -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
