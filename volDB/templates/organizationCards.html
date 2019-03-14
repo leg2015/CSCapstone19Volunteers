@@ -2,14 +2,24 @@
 {% block organizationCards %}
 
   {% for organization in results %}
-  <div class="card">
+  <div class="card result">
     <div class="card-body">
-      <h5 class="card-title"> {{ organization.name }}</h5>
+      <h5 class="card-title"><strong>{{ organization.name }}</strong></h5>
       <h6 class="card-subtitle mb-2 text-muted"> {{ organization.Location }}</h6>
-      <p class="card-text"> {{ organization.mission }}</p>
+      <p class="card-text"> Mission: {{ organization.mission }}</p>
       <a href="{{ organization.website }}" class="">Website</a>
     </div>
   </div>
+
+  {% empty %} <!-- results QuerySet is empty -->
+  <div class="card result">
+    <div class="card-body">
+      <h5 class="card-title"><strong>No organizations found</strong></h5>
+      <p class="card-text"> Refine your search above </p>
+    </div>
+  </div>
+
   {% endfor %}
+
 
 {% endblock %}

@@ -19,12 +19,10 @@ def results(request):
         form_data = form.cleaned_data
 
     # filter organizations based on location and category chosen on landing page form
-    results = Organization.objects.all()
-        .filter(location=form_data['location'])
-        .filter(category=form_data['category'])
+    # results = Organization.objects.all().filter(location=form_data['location']).filter(category=form_data['category'])
 
     # Uncomment to show all organizations in database
-    #results = Organization.objects.all() 
+    results = Organization.objects.all() 
 
     # create arguments dict that holds the form and filtered results to pass to 
     args = {
