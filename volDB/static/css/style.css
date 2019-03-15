@@ -23,17 +23,41 @@ a:hover {
   color: black;
 }
 
+.form-control {
+  width: 40%;
+  margin: 0 auto;
+}
+
 
 /* --------- RESULTS STYLES ---------  */
 
 #map {
-  background-color: blue;
+  background-color: peachpuff;
 }
 
 #resultsList {
-  background-color: red;
+  padding: 10px;
+  height: 630px; /* TODO: figure out how to fix height to screen size */
+  overflow: auto;
 }
 
+.result {
+  margin: 10px;
+  transition:         0.75s ease;
+  -o-transition:      0.75s ease;
+  -ms-transition:     0.75s ease;
+  -moz-transition:    0.75s ease;
+  -webkit-transition: 0.75s ease;
+}
+
+.result:hover {
+  background: #FFFBEB;
+  transition:         0.75s ease;
+  -o-transition:      0.75s ease;
+  -ms-transition:     0.75s ease;
+  -moz-transition:    0.75s ease;
+  -webkit-transition: 0.75s ease;
+}
 
 /* --------- BUTTON STYLE ---------  */
 /* button styling and fill inspired from https://codepen.io/anon/pen/MxYBMq 
