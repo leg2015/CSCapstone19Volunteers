@@ -39,10 +39,20 @@ class Command(BaseCommand):
                 # row[6] = phone number
                 numbers = str(row[6]).split("`")
                 for num in numbers:
-                    newPhone = Phone.objects.create(phone=num, orgid=org)
+                    newPhone = Phone.objects.create(phone=num, orgID=org)
                     newPhone.save()
                     
                 # row[5] = address
+                addresses = str(row[5]).split("`")
+                for address in addresses:
+                    adr = address.split(",")
+                    newStreet = adr[0]
+                    newCity = adr[1]
+                    newState = adr[2]
+                    newZip = adr[3]
+                    newAddress = Address.objects.create(street=newStreet, city=newCity, state=newState, zipCode=newZip, orgID=org)
+                    newAddress.save()
+
 
                 # row[7] = email
                 emails = str(row[7]).split("`")
