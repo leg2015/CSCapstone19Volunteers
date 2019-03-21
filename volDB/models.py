@@ -35,7 +35,7 @@ class Organization(models.Model):
 class Phone(models.Model):
     phoneID = models.AutoField(db_column = 'phoneID', primary_key = True)
     phone = models.CharField(db_column = 'phone', max_length = 20) #10 digit phone number, no dashes or spaces
-    orgid = models.ForeignKey(Organization, models.DO_NOTHING, db_column = 'orgID')
+    orgID = models.ForeignKey(Organization, models.DO_NOTHING, db_column = 'orgID')
 
 class Email(models.Model):
     orgID = models.ForeignKey(Organization, models.DO_NOTHING, db_column="orgID")
