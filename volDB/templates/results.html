@@ -11,6 +11,22 @@
       {% endblock %}
     </div>
     <div class="col-sm-12 col-md-5" id="map">
+      <!-- Based on this tutorial: https://developers.google.com/maps/documentation/javascript/adding-a-google-map#get_latLng-->
+        <script>
+            // Initialize and add the map
+            function initMap() {
+              // The location of Uluru
+              var uluru = {lat: 30.6349, lng: -97.6651};
+              // The map, centered at Uluru
+              var map = new google.maps.Map(
+                  document.getElementById('map'), {zoom: 10, center: uluru});
+              // The marker, positioned at Uluru
+              var marker = new google.maps.Marker({position: uluru, map: map});
+            }
+                </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap">
+        </script>
     </div>
   </div>
 </div>
