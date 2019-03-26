@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Category
 from .models import Location
 from .models import Organization
+from .models import Address
 from .forms import LandingPageForm
 
 # index view: will render index.html upon request
@@ -24,10 +25,21 @@ def results(request):
     # Uncomment to show all organizations in database
     results = Organization.objects.all() 
 
+    # create list with all orginzation IDs found in filtered results
+    results_orgIDs = [result.orgID for result in results]
+
+    # made a QuerySet of Address objects filtered from the orgIDs in the above list
+    addresses = Address.objects.filter(orgID__in=results_orgIDs)
+
+    # zip together results and addresses to pass to results.html 
+    resultsWithAddresses = zip(results, addresses)
+
     # create arguments dict that holds the form and filtered results to pass to 
     args = {
         'form': form,
-        'results': results
+        'results': results,
+        'addresses': addresses,
+        'resultsWithAddresses': resultsWithAddresses
     }
 
     # render request: uses organizationCards.html (which extends results.html)
