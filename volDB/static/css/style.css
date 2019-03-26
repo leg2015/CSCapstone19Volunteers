@@ -33,12 +33,14 @@ a:hover {
 
 #map {
   background-color: peachpuff;
+  max-height: 88vh;
+  overflow-y: auto;
 }
 
 #resultsList {
   padding: 10px;
-  height: 630px; /* TODO: figure out how to fix height to screen size */
-  overflow: auto;
+  max-height: 88vh;
+  overflow-y: auto;
 }
 
 .result {
@@ -116,4 +118,18 @@ button:hover{
 
 .fill:hover:before {
   top: 0;
+}
+
+/* Mobile media query */
+
+@media only screen and (max-width: 600px) {
+  #map {
+    background-color: peachpuff;
+    min-height: 50vh;
+  }
+  
+  #resultsList {
+    padding: 10px;
+    max-height: 50vh;
+  }
 }
