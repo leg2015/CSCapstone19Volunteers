@@ -1,12 +1,13 @@
 {% extends 'results.html' %}
 {% block organizationCards %}
-
-  {% for organization in results %}
+  <!-- for each organization/address tuple in resultsWithAddresses (see views.py) -->
+  {% for organization, address in resultsWithAddresses %}
   <div class="card result">
     <div class="card-body">
       <h5 class="card-title"><strong>{{ organization.name }}</strong></h5>
       <h6 class="card-subtitle mb-2 text-muted"> {{ organization.Location }}</h6>
       <p class="card-text"> Mission: {{ organization.mission }}</p>
+      <p class="card-text"> Address: {{ address.street }} {{ address.city }}, {{ address.state }} {{ address.zipCode}}</p>
       <a href="{{ organization.website }}" class="" target="_blank">Website</a>
     </div>
   </div>
@@ -21,5 +22,10 @@
 
   {% endfor %}
 
+  {% comment %} 
+  Print out addresses found in Addresses
+  {% for address in addresses %}
+    <p>{{ address.street }} </p>
+  {% endfor %} {% endcomment %}
 
 {% endblock %}
