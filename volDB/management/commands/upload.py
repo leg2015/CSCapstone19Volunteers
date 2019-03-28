@@ -4,11 +4,12 @@ from capstone19.settings import BASE_DIR
 import csv
 import os
 class Command(BaseCommand):
-    def import_from_csv(self): 
+    def import_from_csv(self):
+         
         print('----- start import method -------')
-        csvfile = open('updateCopy.csv')
+        csvfile = open('Udating NPO Caroline.csv', encoding="ISO-8859-1")
         print('----- opened csv -------')
-        fileReader = csv.reader(csvfile)
+        fileReader = csv.reader(csvfile, delimiter='|')
         print('----- csv reader -------', type(fileReader))
         count = 0
         for row in fileReader:
