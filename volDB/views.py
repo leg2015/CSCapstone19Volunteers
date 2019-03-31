@@ -20,10 +20,27 @@ def results(request):
         form_data = form.cleaned_data
 
     # filter organizations based on location and category chosen on landing page form
-    # results = Organization.objects.all().filter(location=form_data['location']).filter(category=form_data['category'])
+    locationSelect = form_data['location']
+    categorySelect = form_data['category']
+    
+    print("Location select is ",  form_data['location'])
+    print("Category select is ",  form_data['category'])
+    if locationSelect is None and categorySelect is None:
+        results = Organization.objects.all()
+        print("queryset is " + str(results))
+    elif locationSelect is None:
+        results = Organization.objects.all().filter(category=categorySelect)
+    elif categorySelect is None:
+        results = Organization.objects.all().filter(location=locationSelect)
+    else:
+        results = Organization.objects.all().filter(
+            location=locationSelect).filter(category=categorySelect)
 
-    # Uncomment to show all organizations in database
-    results = Organization.objects.all() 
+    # four cases:
+    # category is any, other is filtered
+    # category filtered, location is any
+    # category is any, location is any
+    # category is filtered, location is filtered -> what we have currently
 
     # create list with all orginzation IDs found in filtered results
     results_orgIDs = [result.orgID for result in results]
