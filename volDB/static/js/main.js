@@ -17,4 +17,6 @@ function initMap() {
     position: uluru,
     map: map
   });
+  var input = document.getElementById('searchLocation');
+  var autocomplete = new google.maps.places.Autocomplete(input);
 }
