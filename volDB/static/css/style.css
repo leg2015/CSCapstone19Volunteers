@@ -28,7 +28,9 @@ a:hover {
   margin: 0 auto;
 }
 
-
+#hide {
+  display: none;
+}
 /* --------- RESULTS STYLES ---------  */
 
 #map {
@@ -60,7 +62,6 @@ a:hover {
   -moz-transition:    0.75s ease;
   -webkit-transition: 0.75s ease;
 }
-
 /* --------- BUTTON STYLE ---------  */
 /* button styling and fill inspired from https://codepen.io/anon/pen/MxYBMq 
   designed to match Southwestern's style guide */
