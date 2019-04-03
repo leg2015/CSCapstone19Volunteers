@@ -7,7 +7,7 @@ class Command(BaseCommand):
     def import_from_csv(self):
          
         print('----- start import method -------')
-        csvfile = open('Udating NPO Caroline.csv', encoding="ISO-8859-1")
+        csvfile = open('UpdatingNPOAaron.csv', encoding="ISO-8859-1")
         print('----- opened csv -------')
         fileReader = csv.reader(csvfile, delimiter='|')
         print('----- csv reader -------', type(fileReader))
@@ -51,8 +51,12 @@ class Command(BaseCommand):
                     newCity = adr[1]
                     newState = adr[2]
                     newZip = adr[3]
-                    newAddress = Address.objects.create(street=newStreet, city=newCity, state=newState, zipCode=newZip, orgID=org)
+                    physicalAddress = True
+                    if("P.O." in adr[0] or "p.o." in adr[0] or "P.o." in adr[0]):
+                        physicalAddress = False
+                    newAddress = Address.objects.create(street=newStreet, city=newCity, state=newState, zipCode=newZip, orgID=org, isPhysicalAddress=physicalAddress)
                     newAddress.save()
+                    
 
 
                 # row[7] = email
@@ -61,6 +65,7 @@ class Command(BaseCommand):
                     newEmail = Email.objects.create(email=eaddress, orgID=org)
                     newEmail.save()
             count += 1
+        print('----- finished loop -------')
     def handle(self, *args, **options):
         # call the function to import data
         print('----- made it to handle -------')
