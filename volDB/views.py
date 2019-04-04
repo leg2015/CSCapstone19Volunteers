@@ -5,32 +5,37 @@ from .models import Location
 from .models import Organization
 from .models import Address
 from .forms import LandingPageForm
+from .forms import ResultsPageForm as filterForm 
 
 # index view: will render index.html upon request
 def index(request):
     categories = Category.objects.order_by('category') # create QuerySet with all categories in volDB
     locations = Location.objects.all() # create QuerySet with all locations in volDB
-    form = LandingPageForm() # default form
-    return render(request, 'index.html', {'categories': categories, 'locations': locations, 'form': form})
+    indexForm = LandingPageForm() # default form
+    return render(request, 'index.html', {'categories': categories, 'locations': locations, 'indexForm': indexForm})
+
+def queryCategory(Queryset, cat):
+    return Queryset.filter(category=cat)
+def queryLocation(Queryset, loc):
+    return Queryset.filter(location=loc)
+def queryRadius(Queryset, addresses, radius):
+    # Search for organizations within radius of user defined location
+
+    # Place pin for organizations within radius
+
+    return (Queryset, addresses)
 
 # results view: takes POST request to render results page with data from landing page form
 def results(request):
-    form = LandingPageForm(request.POST) # assign form to POST request of data in LandingPageForm
-    if form.is_valid():
-        form_data = form.cleaned_data
-
-    # filter organizations based on location and category chosen on landing page form
+    indexForm = LandingPageForm(request.POST) # assign form to POST request of data in LandingPageForm
+    if indexForm.is_valid():
+        form_data = indexForm.cleaned_data
+    keys = form_data.keys()
+    results = Organization.objects.all()
     if form_data['location'] != None:
-        if form_data['category'] != None: # Specific category and location
-            results = Organization.objects.all().filter(location=form_data['location']).filter(category=form_data['category'])
-        else: # Any category, specific location
-            results = results = Organization.objects.all().filter(location=form_data['location'])
-    else:
-        if form_data['category'] != None: # Specific category, any location
-            results = results = Organization.objects.all().filter(category=form_data['category'])
-        else: # Any category, any location
-            results = Organization.objects.all() 
-
+        results = queryLocation(results, form_data['location'])
+    if form_data['category'] != None:
+        results = queryCategory(results, form_data['category'])
     # Uncomment to show all organizations in database
     # results = Organization.objects.all() 
 
@@ -39,13 +44,19 @@ def results(request):
 
     # made a QuerySet of Address objects filtered from the orgIDs in the above list
     addresses = Address.objects.filter(orgID__in=results_orgIDs)
+    if 'myLocation' in keys:
+        if form_data['myLocation'] != None:
+            radius = 50
+            if form_data['radius'] != None:
+                radius = form_data['radius']
+            results, addresses = queryRadius(results, addresses, radius)
 
     # zip together results and addresses to pass to results.html 
     resultsWithAddresses = zip(results, addresses)
 
     # create arguments dict that holds the form and filtered results to pass to 
     args = {
-        'form': form,
+        'filterForm': filterForm,
         'results': results,
         'addresses': addresses,
         'resultsWithAddresses': resultsWithAddresses
