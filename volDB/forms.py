@@ -7,12 +7,12 @@ from .models import Organization
 class LandingPageForm(forms.Form):
     category = forms.ModelChoiceField(queryset=Category.objects.order_by('category'), 
                                             required=False, 
-                                            initial="Any", 
-                                            widget=forms.Select(attrs={'class' : 'form-control'})
+                                            widget=forms.Select(attrs={'class' : 'form-control'}),
+                                            initial=0
                                             )
     location = forms.ModelChoiceField(queryset=Location.objects.all(), 
                                     required=False, 
-                                    initial="Georgetown",
+                                    initial=0,
                                     widget=forms.Select(attrs={'class' : 'form-control'}))
     # myLocation = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class': 'form-control', 'id': 'searchLocation'}), required=False)
     # radius = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
