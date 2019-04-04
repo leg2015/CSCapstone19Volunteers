@@ -28,7 +28,6 @@ a:hover {
   margin: 0 auto;
 }
 
-
 /* --------- RESULTS STYLES ---------  */
 
 #map {
@@ -59,6 +58,22 @@ a:hover {
   -ms-transition:     0.75s ease;
   -moz-transition:    0.75s ease;
   -webkit-transition: 0.75s ease;
+}
+
+/* --------- RESULTS PAGE SEARCH FORM --------- */
+li {
+  text-decoration: none;
+  display: inline;
+  margin: 0 1%;
+  float: left;
+}
+.search-bar {
+  width: 100%;
+  margin: 0 auto;
+}
+.submit-bar {
+  margin-top: 0;
+  margin-left: 3%;
 }
 
 /* --------- BUTTON STYLE ---------  */
