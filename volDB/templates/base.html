@@ -25,7 +25,7 @@
     <h5 class="my-0 mr-md-auto font-weight-bold"> <a href="{% url 'index' %}">Voluntunity</a> </h5>
     <nav class="my-2 my-md-0 mr-md-3">
       <a class="btn btn-outline-secondary" href="{% url 'results' %}">BROWSE</a>
-      <a class="p-2 text-dark" href="#">ABOUT</a> <!-- use AJAX to load in about page? use pop-up? -->
+      <a class="p-2 text-dark" href="#" id="aboutButton">ABOUT</a> <!-- use AJAX to load in about page? use pop-up? -->
       <a class="p-2 text-dark" href="{% url 'admin:index' %}">ADMIN LOGIN</a>
     </nav>
   </div>
@@ -49,8 +49,8 @@
   </script>
 
   <!-- Load in custom main.js file-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script type="text/javascript" src="{% static "js/main.js" %}"></script>
-
 </body>
 
 </html>
