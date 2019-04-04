@@ -2,7 +2,7 @@
 // Initialize and add the map
 function initMap() {
   // The location of Uluru
-  var uluru = {
+  var georgetown = {
     lat: 30.6349,
     lng: -97.6651
   };
@@ -10,13 +10,23 @@ function initMap() {
   var map = new google.maps.Map(
     document.getElementById('map'), {
       zoom: 10,
-      center: uluru
+      center: georgetown
     });
   // The marker, positioned at Uluru
   var marker = new google.maps.Marker({
-    position: uluru,
+    position: georgetown,
     map: map
   });
+
   var input = document.getElementById('searchLocation');
   var autocomplete = new google.maps.places.Autocomplete(input);
 }
+}
+
+$( document ).ready(function() {
+  // Replace default HTML text in landing page select "---------"
+  // with custom default 'any thing'
+  $("#id_category option:first-child").text("Any Category");
+  $("#id_location option:first-child").text("Any Location");
+});
+
