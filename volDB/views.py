@@ -44,6 +44,7 @@ def results(request):
         # Uncomment to show all organizations in database
         # results = Organization.objects.all() 
 
+
         # create list with all orginzation IDs found in filtered results
         results_orgIDs = [result.orgID for result in results]
 
@@ -70,3 +71,4 @@ def results(request):
 
         # render request: uses organizationCards.html (which extends results.html)
         return render(request, 'organizationCards.html', args)
+
