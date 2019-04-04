@@ -17,6 +17,10 @@ function initMap() {
     position: georgetown,
     map: map
   });
+
+  var input = document.getElementById('searchLocation');
+  var autocomplete = new google.maps.places.Autocomplete(input);
+}
 }
 
 $( document ).ready(function() {
