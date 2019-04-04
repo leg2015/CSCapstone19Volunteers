@@ -24,5 +24,45 @@ $( document ).ready(function() {
   // with custom default 'any thing'
   $("#id_category option:first-child").text("Any Category");
   $("#id_location option:first-child").text("Any Location");
-});
+  console.log("method fired");
+  //   // Use sweetalert2 to show About message
+  //   Swal.fire({
+  //     // title: ‘<span id=“title”>About SU Radio</span>‘,
+  //     // showCloseButton: true,
+  //     // focusConfirm: false,
+  //     // html: `<p style=“font-family: Roboto”>SU Radio is the independent, student run online radio station of Southwestern University. <br>
+  //     //         Student’s talk shows, podcasts, and DJ sets are broadcasted here every week. Interested in joining? <br>
+  //     //         <strong>Contact southwesternuradio@gmail.com</strong>
+  //     //         <br> <br>
+  //     //         This site was built as a part of SU’s King Creativity grant in 2019.
+  //     //       </p>`,
+  //     // confirmButtonText: ‘<span style=“font-family: Roboto;“>OK</span>‘,
+  //     // confirmButtonColor: ‘#FFD54F’
+  //   });console.log("method fired");
+//   // Use sweetalert2 to show About message
+//   Swal.fire({
+//     // title: ‘<span id=“title”>About SU Radio</span>‘,
+//     // showCloseButton: true,
+//     // focusConfirm: false,
+//     // html: `<p style=“font-family: Roboto”>SU Radio is the independent, student run online radio station of Southwestern University. <br>
+//     //         Student’s talk shows, podcasts, and DJ sets are broadcasted here every week. Interested in joining? <br>
+//     //         <strong>Contact southwesternuradio@gmail.com</strong>
+//     //         <br> <br>
+//     //         This site was built as a part of SU’s King Creativity grant in 2019.
+//     //       </p>`,
+//     // confirmButtonText: ‘<span style=“font-family: Roboto;“>OK</span>‘,
+//     // confirmButtonColor: ‘#FFD54F’
+//   });
 
+$('#aboutButton').on("click", function() {
+  console.log("method fired");
+//   // Use sweetalert2 to show About message
+  Swal.fire(
+    "This is your friendly how-to manual."
+    // "1.) Click on the dropdown for category and select the category you would like to search under."
+    // "2.) Click on the dropdown for location and select the location you would like to search in."
+    // "3.) Click the SEARCH button."
+  );
+})
+
+});
