@@ -17,11 +17,11 @@ function initMap() {
     position: georgetown,
     map: map
   });
-
+  // Places API autocomplete
   var input = document.getElementById('searchLocation');
   var autocomplete = new google.maps.places.Autocomplete(input);
 }
-}
+
 
 $( document ).ready(function() {
   // Replace default HTML text in landing page select "---------"
@@ -29,4 +29,3 @@ $( document ).ready(function() {
   $("#id_category option:first-child").text("Any Category");
   $("#id_location option:first-child").text("Any Location");
 });
-
