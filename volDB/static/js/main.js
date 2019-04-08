@@ -37,6 +37,8 @@ $('#aboutButton').on("click", function() {
   // discuss what the results will desplay like and remember to mention how the maps will render (ask Colin)
   showCloseButton: true,
   showCancelButton: true,
+  cancelButtonClass: 'button-text-width',
+  confirmButtonClass: 'button-text-width',
   cancelButtonColor: '#FFCD00',
   confirmButtonText: 'OK',
   confirmButtonColor: '#6c757d',
