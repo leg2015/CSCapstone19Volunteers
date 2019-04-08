@@ -37,15 +37,14 @@ $('#aboutButton').on("click", function() {
   // discuss what the results will desplay like and remember to mention how the maps will render (ask Colin)
   showCloseButton: true,
   showCancelButton: true,
-  cancelButtonClass: 'button-text-width',
-  confirmButtonClass: 'button-text-width',
+  cancelButtonClass: 'button-text-height',
+  confirmButtonClass: 'button-text-height',
   cancelButtonColor: '#FFCD00',
   confirmButtonText: 'OK',
   confirmButtonColor: '#6c757d',
   cancelButtonText: 'Refine Search',
   }
   ).then((value) => {
-  console.log(value.dismiss != 'cancel');
   if(value.dismiss == 'cancel'){
   Swal.fire({
   type: 'question',
