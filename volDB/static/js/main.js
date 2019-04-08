@@ -53,16 +53,38 @@ $( document ).ready(function() {
 //     // confirmButtonText: ‘<span style=“font-family: Roboto;“>OK</span>‘,
 //     // confirmButtonColor: ‘#FFD54F’
 //   });
-
 $('#aboutButton').on("click", function() {
+  // console.log("method fired");
+  // Use sweetalert2 to show About message
+  Swal.fire({
+  type: 'question',
+  html: '<h1 class="jumbotron-heading">This is your friendly how-to manual</h1><br><br>'+
+  '<p>1) Click on the dropdown for category and select the category you would like to search under. <br><br></p>'+
+  '<p>2) Click on the dropdown for location and select the location you would like to search in. <br><br></p>'+
+  '<p>3) Click the SEARCH button.</p>',
+  // discuss what the results will desplay like and remember to mention how the maps will render (ask Colin)
+  showCloseButton: true,
+  showCancelButton: true,
+  cancelButtonColor: '#FFCD00',
+  confirmButtonText: 'OK',
+  confirmButtonColor: '#6c757d',
+  cancelButtonText: 'Refine Search',
+  }
+  ).then((value) => {
+  console.log(value.dismiss != 'cancel');
+  if(value.dismiss == 'cancel'){
+  Swal.fire({
+  type: 'question',
+  html: '<h1 class="jumbotron-heading">How to refine your search</h1><br><br>' +
+  '<p>1) Click on the dropdown for category and select the category you would like to search under. <br><br></p>'+
+  '<p>2) Type in the city or address of location you are searching from. <br><br></p>'+
+  '<p>3) Enter a search radius in miles for how far you wish to travel from your starting location. <br><br></p>' +
+  '<p>4) Click the SEARCH button.</p>',
+  confirmButtonColor: '#FFCD00',
+  showCloseButton: true,
+  });
+  }
   console.log("method fired");
-//   // Use sweetalert2 to show About message
-  Swal.fire(
-    "This is your friendly how-to manual."
-    // "1.) Click on the dropdown for category and select the category you would like to search under."
-    // "2.) Click on the dropdown for location and select the location you would like to search in."
-    // "3.) Click the SEARCH button."
-  );
-})
-
-});
+  });
+  })
+  });
