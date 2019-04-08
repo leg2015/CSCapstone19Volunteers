@@ -33,8 +33,9 @@ $('#aboutButton').on("click", function() {
   html: '<h1 class="jumbotron-heading">This is your friendly how-to manual</h1><br><br>'+
   '<p>1) Click on the dropdown for category and select the category you would like to search under. <br><br></p>'+
   '<p>2) Click on the dropdown for location and select the location you would like to search in. <br><br></p>'+
-  '<p>3) Click the SEARCH button.</p>',
+  '<p>3) Click the SEARCH button.<br><br></p>' +
   // discuss what the results will desplay like and remember to mention how the maps will render (ask Colin)
+  '<p> Cards with the available opportunities will appear on the left had side of the screen and a map will appear on the right hand side of the screen showing where the opportunity is in relation to you based on your search requirements.<br><br></p>',
   showCloseButton: true,
   showCancelButton: true,
   cancelButtonClass: 'button-text-height',
