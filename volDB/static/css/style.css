@@ -42,6 +42,11 @@ a:hover {
   overflow-y: auto;
 }
 
+
+#website_link {
+   color:#6faedc;
+   font-weight: bold;
+}
 .result {
   margin: 10px;
   transition:         0.75s ease;
