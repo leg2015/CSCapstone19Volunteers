@@ -35,7 +35,7 @@ $('#aboutButton').on("click", function() {
   '<p>2) Click on the dropdown for location and select the location you would like to search in. <br><br></p>'+
   '<p>3) Click the SEARCH button.<br><br></p>' +
   // discuss what the results will desplay like and remember to mention how the maps will render (ask Colin)
-  '<p> Cards with the available opportunities will appear on the left had side of the screen and a map will appear on the right hand side of the screen showing where the opportunity is in relation to you based on your search requirements. Thank you for visiting our page.<br><br></p>',
+  '<p> Cards with the available opportunities will appear on the left had side of the screen and a map will appear on the right hand side of the screen showing where the opportunity is in relation to you based on your search requirements. Thank you for visiting our page<br><br></p>',
   showCloseButton: true,
   showCancelButton: true,
   cancelButtonClass: 'button-text-height',
