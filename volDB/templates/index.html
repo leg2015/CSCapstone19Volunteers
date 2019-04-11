@@ -1,148 +1,25 @@
-<!doctype html>
-<html lang="en">
+{% extends 'base.html' %}
+{% block content %}
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous">
-
-  <!-- Google fonts import following SU style guide -->
-  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700|Playfair+Display" rel="stylesheet">
-
-  <title>CS Capstone 2019: Volunteer Database</title>
-
-
-  <style>
-    #nav {
-      background-color: #FFCD00;
-    }
-
-    .jumbotron-heading {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-    }
-
-    a, p, h5 {
-      font-family: 'Nanum Gothic', sans-serif;
-    }
-
-    /* button styling and fill inspired from:
-    https://codepen.io/anon/pen/MxYBMq */
-    
-    button {
-      position: relative;
-      height: 50px;
-      width: 175px;
-      margin: 10px 7px;
-      padding: 5px 5px;
-      font-weight: 700;
-      font-size: 15px;
-      letter-spacing: 2px;
-      color: #FFCD00;
-      border: 3px #FFCD00 solid;
-      text-transform: uppercase;
-      outline: 0;
-      overflow:hidden;
-      background: white;
-      z-index: 1;
-      cursor: pointer;
-      text-decoration: none;
-      transition:         0.25s ease;
-      -o-transition:      0.25s ease;
-      -ms-transition:     0.25s ease;
-      -moz-transition:    0.25s ease;
-      -webkit-transition: 0.25s ease;
-    }
-
-    button a {
-      text-decoration: none;
-      color: #FFCD00;
-    }
-
-    button a:hover {
-      text-decoration: none;
-      color: white;
-    }
-
-    .fill:hover a {
-      color: white;
-    }
-
-    .fill:before {
-      content: "";
-      position: absolute;
-      background: #FFCD00;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      top: 100%;
-      z-index: -1;
-      -webkit-transition: top 0.25s ease;
-    }
-
-    .fill:hover:before {
-      top: 0;
-    }
-
-  </style>
-</head>
-
-
-<body>
-  <!-- Navbar -->
-  <div id="nav" class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 border-bottom shadow-sm">
-    <h5 class="my-0 mr-md-auto font-weight-bold">Voluntunity</h5>
-    <nav class="my-2 my-md-0 mr-md-3">
-      <a class="btn btn-outline-secondary" href="#">BROWSE</a>
-      <a class="p-2 text-dark" href="#">ABOUT</a> <!-- use AJAX to load in about page? use pop-up? -->
-      <a class="p-2 text-dark" href="{% url 'admin:index' %}">ADMIN LOGIN</a>
-    </nav>
-  </div>
-
-  <!-- Landing Page -->
-  <section id="main" class="jumbotron text-center">
+<!-- Landing Page -->
+<div id="main">
+  <section class="jumbotron text-center">
     <div class="container">
       <h1 class="jumbotron-heading">Welcome to Voluntunity</h1>
-      <p class="lead text-muted">A tool for locating nonprofit and volunteer organizations in the Williamson County, Texas
-        area and beyond.</p>
+      <p class="lead text-muted">A tool for locating nonprofit and volunteer organizations
+        in the Williamson County, Texas area and beyond.</p>
 
-      <div class="form-group">
-        <label for="exampleFormControlSelect1"> <h5> I'm looking for </h5> </label>
-        <select class="form-control" id="categoryDropdown">
-          <option>Any</option> <!-- here, do we want to utilize the template to fill in these menu options? -->
-          <option>Abuse</option>
-          <option>Children</option>
-          <option>Nature Preservation</option>
-        </select>
-      </div>
+      <!-- Django form for category and location -->
+      <form action="{% url 'results' %}" method="POST">
+        <div class="form-group">
+          {% csrf_token %}
+          {{ indexForm }}
+        </div>
+        <button type="submit" class="fill" name="landingPageSearch"><span>SEARCH</span></button>
+      </form>
 
-
-      <div class="form-group">
-        <label for="exampleFormControlSelect1"> <h5> nonprofit organizations near </h5> </label>
-        <select class="form-control" id="locationDropdown">
-          <option>Georgetown</option>
-          <option>Round Rock</option>
-          <option>North Austin</option>
-        </select>
-      </div>
-      <p>
-        <button class="fill"> <a href="#">SEARCH</a> </button>
-      </p>
     </div>
   </section>
+</div>
 
-  <!-- JavaScript plugins for BootStrap -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-</body>
-
-</html>
+{% endblock %}
