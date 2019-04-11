@@ -66,19 +66,8 @@ a:hover {
 }
 
 /* --------- RESULTS PAGE SEARCH FORM --------- */
-li {
-  text-decoration: none;
-  display: inline;
-  margin: 0 1%;
-  float: left;
-}
-.search-bar {
-  width: 100%;
-  margin: 0 auto;
-}
-.submit-bar {
-  margin-top: 0;
-  margin-left: 3%;
+.refine-search-bar {
+  width: 70%;
 }
 
 /* --------- BUTTON STYLE ---------  */
