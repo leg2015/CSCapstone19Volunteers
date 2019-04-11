@@ -19,7 +19,12 @@
       <h5 class="card-title"><strong>{{ organization.name }}</strong></h5>
       <h6 class="card-subtitle mb-2 text-muted"> {{ organization.Location }}</h6>
       <p class="card-text"> <b>Mission:</b> {{ organization.mission }}</p>
+      {% if organization.opportunities is Null %} 
+      {% comment %} <p class="card-opp"> <b>MEMES:</b> {{ organization.opportunities }}</p> {% endcomment %}
+      {% else %}
       <p class="card-opp"> <b>Volunteering Opportunities:</b> {{ organization.opportunities }}</p>
+      {% endif %}
+      {% comment %} {{ print(organization.opportunities) }} {% endcomment %}
       <a href="{{ organization.website }}"  id="website_link" target="_blank"><button type="button" class="fill">Website</button></a>
     </div>
   </div>
