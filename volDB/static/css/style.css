@@ -33,7 +33,7 @@ a:hover {
 
 #map {
   background-color: peachpuff;
-  max-height: 88vh;
+  min-height: 88vh;
   overflow-y: auto;
 }
 
