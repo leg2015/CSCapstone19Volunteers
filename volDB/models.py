@@ -46,7 +46,7 @@ class Address(models.Model):
     orgID = models.ForeignKey(Organization, models.DO_NOTHING, db_column="orgID")
     addressID = models.AutoField(db_column = 'addressID', primary_key = True)
     street = models.CharField(db_column='street', max_length=100)
-    city = models.CharField(db_column='city', max_length=20)
+    city = models.CharField(db_column='city', max_length=50)
     state = models.CharField(db_column='state', max_length=20)
     zipCode = models.CharField(db_column='zipCode',max_length=20)
     isPhysicalAddress = models.BooleanField(db_column = 'isPhysicalAddress', default = False)
