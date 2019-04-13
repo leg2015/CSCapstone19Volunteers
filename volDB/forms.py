@@ -5,9 +5,9 @@ from .models import Organization
 
 # TODO: figure out initial values 
 class LandingPageForm(forms.Form):
-    category = forms.ModelChoiceField(queryset=Category.objects.order_by('category'), 
+    category = forms.ModelMultipleChoiceField(queryset=Category.objects.order_by('category'), 
                                             required=False, 
-                                            widget=forms.Select(attrs={'class' : 'form-control'}),
+                                            widget=forms.SelectMultiple(attrs={'class' : 'form-control'}),
                                             initial=0
                                             )
     location = forms.ModelChoiceField(queryset=Location.objects.all(), 
@@ -18,10 +18,10 @@ class LandingPageForm(forms.Form):
     # radius = forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control'}), required=False)
 
 class ResultsPageForm(forms.Form):
-    category = forms.ModelChoiceField(queryset=Category.objects.order_by('category'), 
+    category = forms.ModelMultipleChoiceField(queryset=Category.objects.order_by('category'), 
                                             required=False, 
                                             initial="Any", 
-                                            widget=forms.Select(attrs={'class' : 'col-sm-3'})
+                                            widget=forms.SelectMultiple(attrs={'class' : 'col-sm-3'})
                                             )
     # location = forms.ModelChoiceField(queryset=Location.objects.all(), 
     #                                 required=False, 
