@@ -4,11 +4,11 @@
 <!-- Results Page -->
 <div id="main" class="container-fluid">
 <!-- TODO: insert filtering row here -->
+<section class="jumbotron">
+  <div class="container">
   <form action="{% url 'results' %}" method="POST"> 
-      <div class="refine-search-bar">
         {% csrf_token %}
-        <!---->
-        <table>
+        <!-- <table>
           <tr>
             <td class="col-md-2">Category</td>
             <td class="col-md-2">{{ filterForm.category }}</td>
@@ -18,11 +18,13 @@
             <td class="col-md-2">{{ filterForm.radius }}</td>
             <td class="col-md-2"><button type="submit" class="fill submit-bar" name="refineSearch"><span>SEARCH</span></button></td>
           </tr>
-          <!-- {{ filterForm.as_table }} -->
-        </table>
-      </div>
+          {{ filterForm.as_table }} 
+        </table> -->
+        {{ filterForm }}
+        <button type="submit" class="fill col-sm-2" name="refineSearch"><span>SEARCH</span></button>
     </form>
-
+  </div>
+  </section>
   
   <div class="row" style="height: 100%">
     <div class="col-sm-12 col-md-7" id="resultsList">
