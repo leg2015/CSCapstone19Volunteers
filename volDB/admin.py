@@ -21,7 +21,7 @@ class AddressAdmin(admin.TabularInline):
     model = Address
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ('name', 'isVisible')
-    list_filter = ('name', 'category', 'location')
+    list_filter = ('category', 'location')
     inlines = [PhoneAdmin, EmailAdmin, AddressAdmin]
 
 admin.site.register(Organization, OrganizationAdmin)
