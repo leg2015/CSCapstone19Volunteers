@@ -14,6 +14,10 @@ def index(request):
     indexForm = LandingPageForm() # default form
     return render(request, 'index.html', {'categories': categories, 'locations': locations, 'indexForm': indexForm})
 
+# custom logout page: will render logout.html upon request
+def logout(request):
+    return render(request, 'registration/logout.html')
+
 def queryCategory(Queryset, cat):
     return Queryset.filter(category=cat)
 def queryLocation(Queryset, loc):
