@@ -39,7 +39,7 @@ def results(request):
     if indexForm.is_valid():
         form_data = indexForm.cleaned_data
         keys = form_data.keys()
-        results = Organization.objects.all()
+        results = Organization.objects.filter(isVisible=True)
         if 'location' in keys:
             if form_data['location'] != None:
                 results = queryLocation(results, form_data['location'])
