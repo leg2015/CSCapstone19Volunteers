@@ -24,7 +24,7 @@ class Organization(models.Model):
     orgID = models.AutoField(db_column='orgID', primary_key=True)
     mission = models.TextField(db_column='missionStatement')
     opportunities = models.TextField(db_column='volOpportunities', blank=True)
-    website = models.URLField(db_column='volURL', blank=False)
+    website = models.URLField(db_column='volURL', blank=True)
     notes = models.TextField(db_column='notes', blank=True)
     isVisible = models.BooleanField(db_column='visible', default=True)
     category = models.ManyToManyField(Category, db_column='category', blank=True)
