@@ -22,14 +22,14 @@
 
      {% comment %} {{ Book.objects.filter(author__isnull=True). }}  {% endcomment %}
 
-      {% if organization.opportunities is " " %} 
-      <p class="card-opp"> <b>MEMES:</b> {{ organization.opportunities }}</p>
+      {% if organization.opportunities == "." %} 
+      {% comment %} <p class="card-opp"> <b>MEMES:</b> {{ organization.opportunities }}</p> {% endcomment %}
       {% else %}
       <p class="card-opp"> <b>Volunteering Opportunities:</b> {{ organization.opportunities }}</p>
       {% endif %}
       {% comment %} TODO:  if it's . don't display website {% endcomment %}
       {% comment %} {{ print(organization.opportunities) }} {% endcomment %}
-      {% if organization.website is '.' %}
+      {% if organization.website == '.' %}
 
       {% else %}
       <a href="{{ organization.website }}"  id="website_link" target="_blank"><button type="button" class="fill">Website</button></a>
