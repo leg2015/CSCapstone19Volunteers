@@ -32,7 +32,6 @@ $( document ).ready(function() {
   
   // Parse current URL
   var currentUrl = window.location.href;  
-  console.log(currentUrl);
 
   // If user is on the results page:
   // TODO: MAKE SURE TO CHANGE URL CHECK ONCE WE'VE OBTAINED A DOMAIN NAME !!!
@@ -41,7 +40,7 @@ $( document ).ready(function() {
       var resultLink = $( this ).attr("href"); // grab each card's linked website
       // if the link is missing 'http://'
       if(resultLink.startsWith("www")) {
-        var newLink = "https://" + resultLink;
+        var newLink = "http://" + resultLink;
         // Change the href attribute of each link with a newly concatenated URL string
         $( this ).attr("href", newLink);        
       }
