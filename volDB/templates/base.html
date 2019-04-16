@@ -51,6 +51,11 @@
   <!-- Load in custom main.js file-->
   <script type="text/javascript" src="{% static "js/main.js" %}"></script>
 
+  <!-- Pass json_data from views.py to main.js -->
+  <script> 
+    jsonTest = jsonPass( {{ json_data | safe }} );
+  </script>
+
 </body>
 
 </html>

@@ -19,6 +19,8 @@ function initMap() {
   });
 }
 
+/* Landing page form replacement */
+
 $( document ).ready(function() {
   // Replace default HTML text in landing page select "---------"
   // with custom default 'any thing'
@@ -26,3 +28,28 @@ $( document ).ready(function() {
   $("#id_location option:first-child").text("Any Location");
 });
 
+/* Address logic  */
+
+var jsonData = [];
+
+// Grab data from serialized json object (passed in base.html) 
+function jsonPass(data){
+  data.forEach(function(address) {
+    jsonData.push({'orgId':address.fields.orgID, 'fields':address.fields,
+                   'address': address.fields.street + ', ' + address.fields.city + ', ' + 
+                              address.fields.state + ' ' + address.fields.zipCode})
+  })
+  console.log(jsonData);
+
+  return data;
+}
+
+jsonData.forEach(function(addressObj) {
+  var addressString = addressObj.address;
+  //var geocode = https://maps.googleapis.com/maps/api/geocode/json?address=addressString&key=***REMOVED***;
+  var marker = new google.maps.Marker({
+    position: georgetown,
+    title:addressObj.address
+  });
+  console.log(geocode);
+})
