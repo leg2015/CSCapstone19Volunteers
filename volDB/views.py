@@ -45,7 +45,8 @@ def results(request):
                 results = queryLocation(results, form_data['location'])
         if len(form_data['category']) > 0:
             for cat in form_data['category']:
-                results = queryCategory(results, cat)
+                if not cat:
+                    results = queryCategory(results, cat)
         # Uncomment to show all organizations in database
         # results = Organization.objects.all() 
 
