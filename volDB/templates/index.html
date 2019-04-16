@@ -13,9 +13,9 @@
       <form action="{% url 'results' %}" method="POST">
         <div class="form-group">
           {% csrf_token %}
-          {{ form }}
+          {{ indexForm }}
         </div>
-        <button type="submit" class="fill"><span>SEARCH</span></button>
+        <button type="submit" class="fill" name="landingPageSearch"><span>SEARCH</span></button>
       </form>
 
     </div>
