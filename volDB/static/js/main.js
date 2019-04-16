@@ -26,8 +26,8 @@ $( document ).ready(function() {
   $("#id_location option:first-child").text("Any Location");
   console.log("method fired");
 
-  // Use sweetalert2 to show About message
-$('#aboutButton').on("click", function() {
+  // Use sweetalert2 to show How To message
+$('#howToButton').on("click", function() {
   Swal.fire({
   type: 'question',
   html: '<h1 class="jumbotron-heading">This is your friendly how-to manual</h1><br><br>'+
