@@ -39,7 +39,8 @@ def results(request):
     if indexForm.is_valid():
         form_data = indexForm.cleaned_data
         keys = form_data.keys()
-        results = Organization.objects.filter(isVisible=True)
+        results = Organization.objects.exclude(isVisible=False).exclude(
+            category__exact='.').exclude(location__exact='.').exclude(mission__exact='.')
         if 'location' in keys:
             if form_data['location'] != None:
                 results = queryLocation(results, form_data['location'])
@@ -49,10 +50,15 @@ def results(request):
                     results = queryCategory(results, cat)
         # Uncomment to show all organizations in database
         # results = Organization.objects.all() 
-
+        #TODO: use results.exclude to exclude resutls that don't have a category, mission, or city
+        # results.objects.exclude(category='.')
+        # results.objects.exclude(location='.')
+        # results.objects.exclude(mission='.')
 
         # create list with all orginzation IDs found in filtered results
         results_orgIDs = [result.orgID for result in results]
+       
+
 
         # made a QuerySet of Address objects filtered from the orgIDs in the above list
         addresses = Address.objects.filter(orgID__in=results_orgIDs)
