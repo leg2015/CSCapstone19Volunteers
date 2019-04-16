@@ -3,10 +3,20 @@
 
 <!-- Results Page -->
 <div id="main" class="container-fluid">
+  <!-- TODO: insert filtering row here -->
+  <form action="{% url 'results' %}" method="POST" class="search-bar"> 
+    <div class="form-group refine-search">
+      {% csrf_token %}
+      {{ filterForm.as_ul }}
+    </div>
+    <!--
+    <p>Search from Location: </p><input type="text" class="form-group" name="location" id="searchLocation">
+    <p>Distance: </p><input type="text" class="form-group" name="distance"> -->
+    <button type="submit" class="fill submit-bar" name="refineSearch"><span>SEARCH</span></button>
+  </form>
   <div class="row" style="height: 100%">
     <div class="col-sm-12 col-md-7" id="resultsList">
       <h3> Results </h3>
-      <!-- TODO: insert filtering row here -->
       {% block organizationCards %}
       {% endblock %}
     </div>
