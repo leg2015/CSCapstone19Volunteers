@@ -18,6 +18,16 @@ def index(request):
 def logout(request):
     return render(request, 'registration/logout.html')
 
+def login(self, request):
+    print('login view')
+    print(self.has_permission(request))
+    if self.has_permission(request):
+        index_path = reverse('admin:index', current_app=self.name)
+        return HttpResponse(index_path)
+    else:
+        print('render login page')
+        return render(request, 'registration/login.html')
+
 def queryCategory(Queryset, cat):
     return Queryset.filter(category=cat)
 def queryLocation(Queryset, loc):
@@ -35,18 +45,26 @@ def results(request):
         indexForm = filterForm(request.POST)
     else:
         indexForm = LandingPageForm(request.POST) # assign form to POST request of data in LandingPageForm
-    
+        
     if indexForm.is_valid():
         form_data = indexForm.cleaned_data
         keys = form_data.keys()
         results = Organization.objects.filter(isVisible=True)
-        if 'location' in keys:
+        if 'location' in keys: # field is only in LandingPageForm
             if form_data['location'] != None:
                 results = queryLocation(results, form_data['location'])
-        if len(form_data['category']) > 0:
-            for cat in form_data['category']:
-                if not cat:
-                    results = queryCategory(results, cat)
+
+        # ---- Use this if we go for single option ---- #        
+        if form_data['category'] != None:  # if 'any category' is selected, don't filter by category
+            results = queryCategory(results, form_data['category'])
+
+        # ---- Use this if we go for multiselect option ---- #
+        # if len(form_data['category']) > 0:
+        #     for cat in form_data['category']:
+        #         if cat.category != "":  # if 'any category' is selected, don't filter by category
+        #             results = queryCategory(results, cat)
+
+
         # Uncomment to show all organizations in database
         # results = Organization.objects.all() 
 
