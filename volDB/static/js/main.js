@@ -32,6 +32,7 @@ $('#howToButton').on("click", function() {
   type: 'question',
   html: '<h1 class="jumbotron-heading">This is your friendly how-to manual</h1><br><br>'+
   '<p>1) Click on the dropdown for category and select the category you would like to search under. <br></p>'+
+  '<img src="/static/images/HowToSearch.png" style="margin-bottom:15px; width:450px;height:300px;" alt="How To Search">' +
   '<p>2) Click on the dropdown for location and select the location you would like to search in. <br></p>'+
   '<p>3) Click the SEARCH button.<br><br></p>'+
   // discuss what the results will desplay like and remember to mention how the maps will render (ask Colin)
