@@ -4,9 +4,9 @@ from .models import Location
 from .models import Organization
 
 class LandingPageForm(forms.Form):
-    category = forms.ModelMultipleChoiceField(queryset=Category.objects.order_by('category'), 
+    category = forms.ModelChoiceField(queryset=Category.objects.order_by('category'), 
                                             required=False, 
-                                            widget=forms.SelectMultiple(attrs={'class' : 'form-control'}),
+                                            widget=forms.Select(attrs={'class' : 'form-control'}),
                                             initial=0
                                             )
     location = forms.ModelChoiceField(queryset=Location.objects.all(), 
@@ -15,9 +15,9 @@ class LandingPageForm(forms.Form):
                                     widget=forms.Select(attrs={'class' : 'form-control'}))
 
 class ResultsPageForm(forms.Form):
-    category = forms.ModelMultipleChoiceField(queryset=Category.objects.order_by('category'), 
+    category = forms.ModelChoiceField(queryset=Category.objects.order_by('category'), 
                                             required=False, 
-                                            initial="Any", 
+                                            initial=0, 
                                             widget=forms.Select(attrs={'class' : 'col-sm-3'})
                                             )
     myLocation = forms.CharField(max_length=100, label='Start Location', widget=forms.TextInput(attrs={'id': 'searchLocation', 'class':'col-sm-3'}), required=False)
