@@ -3,7 +3,9 @@
 {% block content %}
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<div class="container col-sm-12 col-md-5" style="width: 100%">
+    <p>Your username and password didn't match. Please try again.</p>
+</div>
 {% endif %}
 
 {% if next %}
@@ -14,27 +16,41 @@
     <p>Please login to see this page.</p>
     {% endif %}
 {% endif %}
-<div class="jumbotron">
-    <div class="container col-sm-12 col-md-7" style="width: 100%">
-        <h1 class="jumbotron-heading" style="text-align: center">Administrator Login</h1>
-    </div>
-    <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table class="container col-sm-12 col-md-4"> 
-    <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-    </tr>
-    <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-    </tr>
-    </table>
-    <div class="container col-sm-12 col-md-3" style="width: 100%">
-        <button type="submit" class="fill"><span>LOGIN</span></button>
-    </div>
-    <input type="hidden" name="next" value="{{ next }}">
-    </form>
-</div>
 
+{% if user.is_authenticated %}
+    <div class="jumbotron text-center">
+        <div class="container col-sm-12 col-md-7" style="width: 100%">
+            <h1 class="jumbotron-heading">Hi {{ user.username }}! </h1>
+        </div>
+        <div class="container col-sm-12 col-md-12" style="width: 100%">
+            <p class="lead text-muted"> You are already logged in. Click GO continue to the administration site.</p>
+        </div>
+        <div class="container col-sm-12 col-md-3" style="width: 100%">
+            <a href="{% url 'admin:index' %}"><button type="submit" class="fill"><span>GO</span></button></a>
+        </div>
+    </div>
+{% else %}
+    <div class="jumbotron text-center">
+        <div class="container col-sm-12 col-md-7" style="width: 100%">
+            <h1 class="jumbotron-heading">Administrator Login</h1>
+        </div>
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table class="container col-sm-12 col-md-2"> 
+        <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </tr>
+        </table>
+        <div class="container col-sm-12 col-md-3" style="width: 100%">
+            <button type="submit" class="fill"><span>LOGIN</span></button>
+        </div>
+        <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+{% endif %}
 {% endblock %}
