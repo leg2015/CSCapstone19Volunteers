@@ -44,7 +44,10 @@ def results(request):
         form_data = indexForm.cleaned_data
         keys = form_data.keys()
         results = Organization.objects.filter(isVisible=True)
+        location = None
+        radius = 0
         if 'location' in keys: # field is only in LandingPageForm
+            location = form_data['location']
             if form_data['location'] != None:
                 results = queryLocation(results, form_data['location'])
 
@@ -68,9 +71,11 @@ def results(request):
 
         # made a QuerySet of Address objects filtered from the orgIDs in the above list
         addresses = Address.objects.filter(orgID__in=results_orgIDs)
+        print(keys)
         if 'myLocation' in keys:
-            print(form_data['myLocation'])
-            if form_data['myLocation'] != None:
+            # print(form_data['myLocation'])
+            location = form_data['myLocation']
+            if form_data['myLocation'] != "":
                 radius = 50
                 if form_data['radius'] != None:
                     radius = form_data['radius']
@@ -79,12 +84,21 @@ def results(request):
         # zip together results and addresses to pass to results.html 
         resultsWithAddresses = zip(results, addresses)
 
+        category = form_data['category']
+        if category != None:
+            category = form_data['category'].category
+        if location == "":
+            location = None
+        print(category, location, radius)
         # create arguments dict that holds the form and filtered results to pass to 
         args = {
             'filterForm': filterForm,
             'results': results,
             'addresses': addresses,
-            'resultsWithAddresses': resultsWithAddresses
+            'resultsWithAddresses': resultsWithAddresses,
+            'category': category,
+            'location': location,
+            'radius': radius,
         }
 
         # render request: uses organizationCards.html (which extends results.html)

@@ -27,6 +27,7 @@ a:hover {
   width: 40%;
   margin: 0 auto;
 }
+
 /* --------- RESULTS STYLES ---------  */
 
 #map {
@@ -77,11 +78,16 @@ a:hover {
   padding: 5px;
   border-radius: 5px;
 }
-
 #filterBarContent {
   width: 100%;
 }
 
+.display-results {
+  background: #e9ecef;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
 /* #filterBarContent form {
   position: relative;
   left: 10%;
