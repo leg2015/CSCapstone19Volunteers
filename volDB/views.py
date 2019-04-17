@@ -18,15 +18,9 @@ def index(request):
 def logout(request):
     return render(request, 'registration/logout.html')
 
+# custom login page: will render login.html upon request
 def login(self, request):
-    print('login view')
-    print(self.has_permission(request))
-    if self.has_permission(request):
-        index_path = reverse('admin:index', current_app=self.name)
-        return HttpResponse(index_path)
-    else:
-        print('render login page')
-        return render(request, 'registration/login.html')
+    return render(request, 'registration/login.html')
 
 def queryCategory(Queryset, cat):
     return Queryset.filter(category=cat)
