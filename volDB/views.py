@@ -18,6 +18,10 @@ def index(request):
 def logout(request):
     return render(request, 'registration/logout.html')
 
+# custom login page: will render login.html upon request
+def login(self, request):
+    return render(request, 'registration/login.html')
+
 def queryCategory(Queryset, cat):
     return Queryset.filter(category=cat)
 def queryLocation(Queryset, loc):
@@ -35,18 +39,31 @@ def results(request):
         indexForm = filterForm(request.POST)
     else:
         indexForm = LandingPageForm(request.POST) # assign form to POST request of data in LandingPageForm
-    
+        
     if indexForm.is_valid():
         form_data = indexForm.cleaned_data
         keys = form_data.keys()
         results = Organization.objects.exclude(isVisible=False).exclude(category__exact='.').exclude(location__exact='.').exclude(mission__exact='.').exclude(category__exact="").exclude(location__exact=""). exclude(mission__exact="")
         if 'location' in keys:
+        # results = Organization.objects.filter(isVisible=True)
+            location = None
+            radius = 0
+        # if 'location' in keys: # field is only in LandingPageForm
+        #     location = form_data['location']
             if form_data['location'] != None:
                 results = queryLocation(results, form_data['location'])
-        if len(form_data['category']) > 0:
-            for cat in form_data['category']:
-                if not cat:
-                    results = queryCategory(results, cat)
+
+        # ---- Use this if we go for single option ---- #        
+        if form_data['category'] != None:  # if 'any category' is selected, don't filter by category
+            results = queryCategory(results, form_data['category'])
+
+        # ---- Use this if we go for multiselect option ---- #
+        # if len(form_data['category']) > 0:
+        #     for cat in form_data['category']:
+        #         if cat.category != "":  # if 'any category' is selected, don't filter by category
+        #             results = queryCategory(results, cat)
+
+
         # Uncomment to show all organizations in database
         # results = Organization.objects.all() 
         #TODO: use results.exclude to exclude resutls that don't have a category, mission, or city
@@ -61,9 +78,11 @@ def results(request):
 
         # made a QuerySet of Address objects filtered from the orgIDs in the above list
         addresses = Address.objects.filter(orgID__in=results_orgIDs)
+        print(keys)
         if 'myLocation' in keys:
-            print(form_data['myLocation'])
-            if form_data['myLocation'] != None:
+            # print(form_data['myLocation'])
+            location = form_data['myLocation']
+            if form_data['myLocation'] != "":
                 radius = 50
                 if form_data['radius'] != None:
                     radius = form_data['radius']
@@ -72,12 +91,21 @@ def results(request):
         # zip together results and addresses to pass to results.html 
         resultsWithAddresses = zip(results, addresses)
 
+        category = form_data['category']
+        if category != None:
+            category = form_data['category'].category
+        if location == "":
+            location = None
+        print(category, location, radius)
         # create arguments dict that holds the form and filtered results to pass to 
         args = {
             'filterForm': filterForm,
             'results': results,
             'addresses': addresses,
-            'resultsWithAddresses': resultsWithAddresses
+            'resultsWithAddresses': resultsWithAddresses,
+            'category': category,
+            'location': location,
+            'radius': radius,
         }
 
         # render request: uses organizationCards.html (which extends results.html)
