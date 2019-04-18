@@ -98,7 +98,7 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/capstone19:us-central1:volunteer-db',
+            'HOST': '/cloudsql/capstone19:us-central1:voluntunity-database',
             'NAME': 'Voluntunity',
             'USER': 'defaultUser',
             'PASSWORD': 'V0lunte3r2K19!',
