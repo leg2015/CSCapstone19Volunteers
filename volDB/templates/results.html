@@ -3,16 +3,18 @@
 
 <!-- Results Page -->
 <div id="main" class="container-fluid">
-<!-- TODO: insert filtering row here -->
-<section class="jumbotron">
-  <div class="container">
+
+{% comment %} <section class="jumbotron" id="filterBar"> {% endcomment %}
+  <div id="filterBar" class="form-row align-items-center">
+  <div id="filterBarContent">
   <form action="{% url 'results' %}" method="POST"> 
         {% csrf_token %}
         {{ filterForm }}
         <button type="submit" class="fill col-sm-2" name="refineSearch"><span>SEARCH</span></button>
     </form>
+    </div>
   </div>
-  </section>
+  {% comment %} </section> {% endcomment %}
   
   <div class="row" style="height: 100%">
     <div class="col-sm-12 col-md-7" id="resultsList">
