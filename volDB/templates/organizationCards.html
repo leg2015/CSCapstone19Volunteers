@@ -25,7 +25,7 @@
       </div>
     </div> {% endcomment %}
   <!-- Render cards without addresses: -->
-  {% for organization in results %}
+{% for organization in results %}
   <div class="card result">
     <div class="card-body">
       <h5 class="card-title"><strong>{{ organization.name }}</strong></h5>
@@ -50,7 +50,8 @@
       {% endif %}
 
     </div>
-  </div>
+  </div> 
+
 
   {% empty %} <!-- results QuerySet is empty -->
   <div class="card result">
