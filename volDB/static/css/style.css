@@ -27,12 +27,14 @@ a:hover {
   width: 40%;
   margin: 0 auto;
 }
+
 /* --------- RESULTS STYLES ---------  */
 
 #map {
   background-color: peachpuff;
   min-height: 88vh;
   overflow-y: auto;
+  margin-top: 5px;
 }
 
 #resultsList {
@@ -66,8 +68,31 @@ a:hover {
 
 /* --------- RESULTS PAGE SEARCH FORM --------- */
 .refine-search-bar {
-  width: 70%;
+  width: 100%;
 }
+
+#filterBar {
+  height: 100px;
+  background: whitesmoke;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+}
+#filterBarContent {
+  width: 100%;
+}
+
+.display-results {
+  background: #e9ecef;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+/* #filterBarContent form {
+  position: relative;
+  left: 10%;
+  margin: auto 0;
+} */
 
 /* --------- BUTTON STYLE ---------  */
 /* button styling and fill inspired from https://codepen.io/anon/pen/MxYBMq 
@@ -139,5 +164,21 @@ button:hover{
   #resultsList {
     padding: 10px;
     max-height: 50vh;
+    position: relative;
+    /* top: 300px; */
+  }
+
+  #filterBar {
+    height: 320px;
+  }
+
+  #filterBarContent {
+    margin: auto 0;
+    position: relative;
+    left: 0;
+  }
+
+  .fill {
+    width: 97%;
   }
 }
