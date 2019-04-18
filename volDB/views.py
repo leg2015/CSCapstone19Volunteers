@@ -9,8 +9,8 @@ from .forms import ResultsPageForm as filterForm
 
 # index view: will render index.html upon request
 def index(request):
-    categories = Category.objects.order_by('category') # create QuerySet with all categories in volDB
-    locations = Location.objects.all() # create QuerySet with all locations in volDB
+    categories = Category.objects.order_by('category').exclude(category='.').exclude(category='') # create QuerySet with all categories in volDB
+    locations = Location.objects.exclude(location='').exclude(location='.') # create QuerySet with all locations in volDB
     indexForm = LandingPageForm() # default form
     return render(request, 'index.html', {'categories': categories, 'locations': locations, 'indexForm': indexForm})
 
@@ -43,11 +43,12 @@ def results(request):
     if indexForm.is_valid():
         form_data = indexForm.cleaned_data
         keys = form_data.keys()
-        results = Organization.objects.exclude(isVisible=False).exclude(category__exact='.').exclude(location__exact='.').exclude(mission__exact='.').exclude(category__exact="").exclude(location__exact=""). exclude(mission__exact="")
+        results = Organization.objects.exclude(isVisible=False).exclude(mission__exact='.').exclude(mission__exact="").exclude(location__location='.').exclude(category__category=".") #.exclude(location.location='').exclude(location.location='.') #.exclude(category__exact='.').exclude(category__exact='') .exclude(category__exact='.').exclude(location__exact='.').exclude(mission__exact='.') #.exclude(category__exact="").exclude(location__exact=""). exclude(mission__exact="")
+        location = None
+        radius = 0
         if 'location' in keys:
         # results = Organization.objects.filter(isVisible=True)
-            location = None
-            radius = 0
+            
         # if 'location' in keys: # field is only in LandingPageForm
         #     location = form_data['location']
             if form_data['location'] != None:
