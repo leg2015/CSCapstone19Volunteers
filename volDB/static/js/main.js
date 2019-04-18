@@ -39,6 +39,8 @@ $( document ).ready(function() {
     $( ".website_link" ).each(function(index, result) {
       var resultLink = $( this ).attr("href"); // grab each card's linked website
       // if the link is missing 'http://'
+      console.log("result link is ", resultLink);
+      // HIHIHIHIH
       if(resultLink.startsWith("www")) {
         var newLink = "http://" + resultLink;
         // Change the href attribute of each link with a newly concatenated URL string

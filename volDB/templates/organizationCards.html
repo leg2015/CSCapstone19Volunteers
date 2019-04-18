@@ -25,13 +25,14 @@
       </div>
     </div> {% endcomment %}
   <!-- Render cards without addresses: -->
-  {% for organization in results %}
+{% for organization in results %}
   <div class="card result">
     <div class="card-body">
       <h5 class="card-title"><strong>{{ organization.name }}</strong></h5>
       <h6 class="card-subtitle mb-2 text-muted"> {{ organization.Location }}</h6>
       <p class="card-text"> <b>Mission:</b> {{ organization.mission }}</p>
 
+    {% comment %} moar comments yay {% endcomment %}
      {% comment %} {{ Book.objects.filter(author__isnull=True). }}  {% endcomment %}
 
       {% if organization.opportunities == "." %} 
@@ -49,7 +50,8 @@
       {% endif %}
 
     </div>
-  </div>
+  </div> 
+
 
   {% empty %} <!-- results QuerySet is empty -->
   <div class="card result">
