@@ -35,8 +35,8 @@
     {% comment %} moar comments yay {% endcomment %}
      {% comment %} {{ Book.objects.filter(author__isnull=True). }}  {% endcomment %}
 
-      {% if organization.opportunities == "." %} 
-      {% comment %} <p class="card-opp"> <b>MEMES:</b> {{ organization.opportunities }}</p> {% endcomment %}
+      {% if organization.opportunities == "." or organization.opportunites == "" %} 
+       <p class="card-opp"> <b>Volunteering Opportunities:</b> N/A</p>
       {% else %}
       <p class="card-opp"> <b>Volunteering Opportunities:</b> {{ organization.opportunities }}</p>
 
