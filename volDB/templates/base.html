@@ -25,9 +25,14 @@
     <h5 class="my-0 mr-md-auto font-weight-bold"> <a href="{% url 'index' %}">Voluntunity</a> </h5>
     <nav class="my-2 my-md-0 mr-md-3">
       <a class="btn btn-outline-secondary" href="{% url 'results' %}">BROWSE</a>
+<<<<<<< HEAD
       <a class="p-2 text-dark" href="#" id="howToButton">HOW TO</a> <!-- used sweetalert2 to create pop up -->
       <a class="p-2 text-dark" href=https://www.southwestern.edu/community-engaged-learning/ target="_blank">CONTACT US</a>
       <a class="p-2 text-dark" href="{% url 'admin:index' %}">ADMIN LOGIN</a>
+=======
+      <a class="p-2 text-dark" href="#">ABOUT</a> <!-- use AJAX to load in about page? use pop-up? -->
+      <a class="p-2 text-dark" href="{% url 'login' %}">ADMIN LOGIN</a>
+>>>>>>> 4d49964d55233a6fd5dbcbc2902af1988088486b
     </nav>
   </div>
 
@@ -46,9 +51,8 @@
 
   <!-- Google Maps API || NOTE: HIDE API KEY BEFORE PUSHING PRODUCTION CODE -->
   <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&libraries=places&callback=initMap">
   </script>
-
   <!-- Load in custom main.js file-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script type="text/javascript" src="{% static "js/main.js" %}"></script>
