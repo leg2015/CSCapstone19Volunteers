@@ -28,7 +28,7 @@ $( document ).ready(function() {
   // with custom default 'any thing'
   $("#id_category option:first-child").text("Any Category");
   $("#id_location option:first-child").text("Any Location");
-<<<<<<< HEAD
+
   console.log("method fired");
 
   // Use sweetalert2 to show How To message
@@ -68,7 +68,7 @@ $('#howToButton').on("click", function() {
   });
   })
   });
-=======
+
 
   
   // Parse current URL
@@ -91,4 +91,4 @@ $('#howToButton').on("click", function() {
   }
 
 });
->>>>>>> 4d49964d55233a6fd5dbcbc2902af1988088486b
+
