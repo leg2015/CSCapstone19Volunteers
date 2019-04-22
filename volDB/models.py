@@ -35,15 +35,15 @@ class Organization(models.Model):
 class Phone(models.Model):
     phoneID = models.AutoField(db_column = 'phoneID', primary_key = True)
     phone = models.CharField(db_column = 'phone', max_length = 50) #10 digit phone number, no dashes or spaces
-    orgID = models.ForeignKey(Organization, models.DO_NOTHING, db_column = 'orgID')
+    orgID = models.ForeignKey(Organization, on_delete=models.CASCADE, db_column = 'orgID')
 
 class Email(models.Model):
-    orgID = models.ForeignKey(Organization, models.DO_NOTHING, db_column="orgID")
+    orgID = models.ForeignKey(Organization, on_delete=models.CASCADE, db_column="orgID")
     email = models.EmailField(db_column='email', max_length=254)
     emailID = models.AutoField(db_column = 'emailID', primary_key = True)
 
 class Address(models.Model):
-    orgID = models.ForeignKey(Organization, models.DO_NOTHING, db_column="orgID")
+    orgID = models.ForeignKey(Organization, on_delete=models.CASCADE, db_column="orgID")
     addressID = models.AutoField(db_column = 'addressID', primary_key = True)
     street = models.CharField(db_column='street', max_length=100)
     city = models.CharField(db_column='city', max_length=50)
