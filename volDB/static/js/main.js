@@ -57,9 +57,9 @@ $('#howToButton').on("click", function() {
   Swal.fire({
   type: 'question',
   html: '<h1 class="jumbotron-heading">How to refine your search</h1><br><br>' +
-  '<p>1) Click on the dropdown for category and select the category you would like to search under. <br><br></p>'+
-  '<p>2) Type in the city or address of location you are searching from. <br><br></p>'+
-  '<p>3) Enter a search radius in miles for how far you wish to travel from your starting location. <br><br></p>' +
+  '<p>1) Click on the dropdown for category and select the category you would like to search under. <br></p>'+
+  '<p>2) Type in the city or address of location you are searching from. <br></p>'+
+  '<p>3) Enter a search radius in miles for how far you wish to travel from your starting location. <br></p>' +
   '<p>4) Click the SEARCH button.</p>',
   confirmButtonColor: '#FFCD00',
   showCloseButton: true,
@@ -90,5 +90,5 @@ $('#howToButton').on("click", function() {
     })
   }
 
-});
+
 
