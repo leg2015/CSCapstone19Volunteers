@@ -98,8 +98,8 @@ if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'HOST': '/cloudsql/capstone19:us-central1:volunteer-db',
-            'NAME': 'volDB',
+            'HOST': '/cloudsql/capstone19:us-central1:voluntunity-database',
+            'NAME': 'Voluntunity',
             'USER': 'defaultUser',
             'PASSWORD': '***REMOVED***',
         }
@@ -116,7 +116,7 @@ else:
             'ENGINE': 'django.db.backends.mysql',
             'HOST': '127.0.0.1',
             'PORT': '3307',
-            'NAME': 'volDB',
+            'NAME': 'Voluntunity',
             'USER': 'defaultUser',
             'PASSWORD': '***REMOVED***'
         }
@@ -162,3 +162,5 @@ USE_TZ = True
 
 STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
+LOGOUT_REDIRECT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/admin'
