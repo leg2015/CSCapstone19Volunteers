@@ -55,6 +55,8 @@ def results(request):
     # serialize addresses to JSON format to be used in main.js
     json_data = serializers.serialize("json", addresses)
 
+    #print(json_data)
+
     # create arguments dict that holds the form and filtered results to pass to
     args = {
         'form': form,
@@ -66,10 +68,10 @@ def results(request):
 
     # render request: uses organizationCards.html(which extends results.html)
     return render(request, 'organizationCards.html', args)
-    categories = Category.objects.order_by('category') # create QuerySet with all categories in volDB
-    locations = Location.objects.all() # create QuerySet with all locations in volDB
-    indexForm = LandingPageForm() # default form
-    return render(request, 'index.html', {'categories': categories, 'locations': locations, 'indexForm': indexForm})
+    # categories = Category.objects.order_by('category') # create QuerySet with all categories in volDB
+    # locations = Location.objects.all() # create QuerySet with all locations in volDB
+    # indexForm = LandingPageForm() # default form
+    # return render(request, 'index.html', {'categories': categories, 'locations': locations, 'indexForm': indexForm})
 
 # custom logout page: will render logout.html upon request
 def logout(request):
@@ -141,6 +143,13 @@ def results(request):
         # zip together results and addresses to pass to results.html 
         resultsWithAddresses = zip(results, addresses)
 
+
+        # serialize addresses to JSON format to be used in main.js
+        json_data = serializers.serialize("json", addresses)
+
+        print(json_data)
+
+
         category = form_data['category']
         if category != None:
             category = form_data['category'].category
@@ -156,6 +165,7 @@ def results(request):
             'category': category,
             'location': location,
             'radius': radius,
+            'json_data': json_data
         }
 
         # render request: uses organizationCards.html (which extends results.html)

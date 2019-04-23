@@ -8,16 +8,6 @@ var count = 0;
 var hasCenter = false;
 var responseList = [];
 
-/* Landing page form replacement */
-
-$(document).ready(function () {
-  // Replace default HTML text in landing page select "---------"
-  // with custom default 'any thing'
-  $("#id_category option:first-child").text("Any Category");
-  $("#id_location option:first-child").text("Any Location");
-
-});
-
 
 // Based on this tutorial: https://developers.google.com/maps/documentation/javascript/adding-a-google-map#get_latLng
 // Initialize and add the map (callback method used in maps API cdn in base.html)
