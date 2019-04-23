@@ -1,34 +1,128 @@
+/* Google Map API initialization */
+
+var map; // create global 'map' variable to be used throughout main.js
+var latAvg = 0.0;
+var lngAvg = 0.0;
+var latLngList = [];
+var count = 0;
+var hasCenter = false;
+var responseList = [];
 
 /* Landing page form replacement */
 
-$( document ).ready(function() {
+$(document).ready(function () {
   // Replace default HTML text in landing page select "---------"
   // with custom default 'any thing'
   $("#id_category option:first-child").text("Any Category");
   $("#id_location option:first-child").text("Any Location");
+
 });
 
-/* Google Map API initialization */
-
-var map; // create global 'map' variable to be used throughout main.js
 
 // Based on this tutorial: https://developers.google.com/maps/documentation/javascript/adding-a-google-map#get_latLng
 // Initialize and add the map (callback method used in maps API cdn in base.html)
 async function initMap() {
   // The location of Georgetown; TODO: pass in selected location (city) to center map near results
-  var georgetown = {
+  var centerLatLng = {
     lat: 30.6349,
     lng: -97.6651
   };
+
+  if (hasCenter) {
+    determineCenter();
+    //centerLatLng = ;
+    console.log(centerLatLng);
+
+    console.log("Center calcualted, re-drawing map");
+
+    console.log(latAvg);
+    console.log(lngAvg);
+
+    map = new google.maps.Map(
+      document.getElementById('map'), {
+        zoom: 10,
+        center: {
+          lat: latAvg,
+          lng: lngAvg
+        }
+      });
+
+      responseList.forEach(function(response) {
+        drawMarker(response);
+      });
+  } else {
   // The map, centered at given location
+  console.log("No center calculated, rendering default map");
   map = new google.maps.Map(
     document.getElementById('map'), {
       zoom: 10,
-      center: georgetown
+      center: centerLatLng
     });
+    //var newCenter = await drawMarkers();
+    drawMarkers();
+    startTimer(1);
+  }
 
-   await drawMarkers();
+  // console.log(newCenter);
+
+
+  // map = new google.maps.Map(
+  //   document.getElementById('map'), {
+  //     zoom: 10,
+  //     center: await determineCenter()
+  //   });
+
+  // while(count < jsonData.length && count != 0) {
+  // }
+
 }
+
+function startTimer(duration) {
+  var timer = duration, minutes, seconds;
+  setInterval(function () {
+      minutes = parseInt(timer / 60, 10)
+      seconds = parseInt(timer % 60, 10);
+
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      if (--timer < 0) {
+          timer = duration;
+      }
+      checkMarkers();
+  }, 1000);
+}
+
+async function checkMarkers() {
+  if(count >= jsonData.length && !hasCenter) {
+    console.log("Houston, we have landed");
+    hasCenter = true;
+    initMap();
+  }
+}
+
+// function recenterMap() {
+//   console.log("recenterMap entered");
+
+//   var markers_promise = new Promise(function(resolve, reject) {
+//     // do a thing, possibly async, then…
+//     // while(count < jsonData.length)
+//     if (count === jsonData.length) {
+//       resolve("Stuff worked!");
+//     }
+//     else {
+//       reject(Error("It broke"));
+//     }
+//   });
+
+//   console.log("promise created");
+
+//   markers_promise.then(function(result) {
+//     console.log(result); // "Stuff worked!"
+//   }, function(err) {
+//     console.log(err); // Error: "It broke"
+//   });
+// }
 
 /* Address logic  */
 
@@ -37,11 +131,12 @@ async function geocode(addressStr) {
   await axios.get('https://maps.googleapis.com/maps/api/geocode/json?', {
     params: {
       address: addressStr,
-      key:'***REMOVED***' // TODO: !!! HIDE THIS KEY BEFORE DISTRIBUTION BUILD !!!
+      key: '***REMOVED***' // TODO: !!! HIDE THIS KEY BEFORE DISTRIBUTION BUILD !!!
     }
   }).then(response => {
     // log full response
     // console.log(response);
+    responseList.push(response);
     drawMarker(response);
     // TODO: pass organization name along with json data for adding labels to markers
 
@@ -62,50 +157,92 @@ async function drawMarker(response) {
   var formatted_address = response.data.results[0].formatted_address;
   // console.log("Rendering pin at latitude: " + lat + " | longitude: " + lng);
 
+  latLngList.push({
+    'lat': lat,
+    'lng': lng
+  });
+
+  count++; // add one to count
+
+  console.log(latLngList);
+  console.log(count);
+
   // create a new marker 
   var marker = new google.maps.Marker({
-    
-    position: { lat: lat, lng: lng},
+    position: {
+      lat: lat,
+      lng: lng
+    },
     map: map,
     title: formatted_address
   });
 }
 
-// old attempt: keeping for one commit (TODO: delete this before next commit)
-// function drawMarkers() {
+function drawMarkers() {
 
-//   jsonData.forEach(function(addressInfo) {
-//     // access each address object's formatted address field from database
-//     var addressString = addressInfo.address;
-//     // console.log(addressString);
-    
-//     // declare addressInfo to be assigned output from geocode Promise
-//     var addressObj;
-//     addressObj = geocode(addressString).then(response => {
-//       console.log("result from geocode: " + response);
-//       // console.log("addressObj after assignment: " + addressObj);
-//       return response;
-//       response.json({ message: 'Request recieved in drawmMarkers!', data})
-//       console.log(response.json({ message: 'Request recieved in drawmMarkers!', data}));
-//       addressObj = result;
-//       console.log("result from geocode: " + result);
-//       console.log("addressObj after assignment: " + addressObj);
-//     }).catch(error => {
-//       console.log(error.message);
-//     });
+  if(latLngList.length != jsonData.length) {
+  jsonData.forEach(function (addressInfo) {
+    // access each address object's formatted address field from database
+    var addressString = addressInfo.address;
+    // console.log(addressString);
 
-//     addressObj.then(result => {
-//       console.log(result);
-//     });
+    // declare addressInfo to be assigned output from geocode Promise
+    var addressObj;
+    addressObj = geocode(addressString).then(response => {
+      // console.log("result from geocode: " + response);
+      // console.log("addressObj after assignment: " + addressObj);
+      return response;
+    }).catch(error => {
+      console.log(error.message);
+    });
 
-//     var marker = new google.maps.Marker({
-//       //position: addressObj.results[0].formatted_address,
-//       position: {    lat: 30.6349,
-//         lng: -97.6651},
-//       map: map,
-//       //title: addressObj.results[0].geometry.location
-//     });
+    //return determineCenter();
+    // addressObj.then(result => {
+    //   console.log(result);
+    // });
 
-//     marker.setMap(map);
-//   })
-// }
+    // var marker = new google.maps.Marker({
+    //   //position: addressObj.results[0].formatted_address,
+    //   position: {    lat: 30.6349,
+    //     lng: -97.6651},
+    //   map: map,
+    //   //title: addressObj.results[0].geometry.location
+    // });
+
+    // marker.setMap(map);
+  }) 
+}
+}
+
+async function determineCenter() {
+  console.log(latLngList);
+  count = 0;
+  var outsideAreaCount = 0;
+
+  latLngList.forEach(latLngEntry => {
+    if(latLngEntry.lat <= 34 && latLngEntry.lat >= 27 && latLngEntry.lng >= -106 && latLngEntry.lng <= -94) {
+      
+      console.log(latLngEntry.lat);
+      console.log(latLngEntry.lng);
+      count++;
+      latAvg += latLngEntry.lat;
+      lngAvg += latLngEntry.lng;
+    }
+  })
+
+  console.log("---------");
+  console.log(latAvg);
+  console.log(lngAvg);
+  console.log(count);
+
+  latAvg /= count;
+  lngAvg /= count;
+
+  console.log("output from determineCenter: ");
+  console.log("latAvg: " + latAvg + " | lngAvg:" + lngAvg);
+
+  return {
+    'latAvgResult': latAvg,
+    'lngAvgResult': lngAvg
+  };
+}
