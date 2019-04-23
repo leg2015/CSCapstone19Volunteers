@@ -8,9 +8,6 @@
     {% endif %}
     {% if location != None %}
       <span class="col-sm-12 col-md-3 display-results">{{ location }}</span>
-      {% if radius != 0%}
-        <span class="col-sm-12 col-md-3 display-results">Radius: {{ radius }}</span>
-      {% endif %}
     {% endif %}
 
     <!-- for each organization/address tuple in resultsWithAddresses (see views.py) -->
