@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700|Playfair+Display" rel="stylesheet">
 
   <!-- Bootstrap & custom CSS -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" >
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
   <title>CS Capstone 2019: Volunteer Database</title>
@@ -36,19 +36,57 @@
 
   <!-- JavaScript plugins for BootStrap -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <!-- Axois library for easy Maps API Geocode GET request handling -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <!-- Google Maps API || NOTE: HIDE API KEY BEFORE PUSHING PRODUCTION CODE -->
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&callback=initMap"
+    async defer>
+  </script>
+
+  <!-- Pass json_data from views.py to main.js -->
+  <script type="text/javascript">
+    var jsonData = [];
+    // Grab data from serialized json object (passed in base.html) 
+    function jsonPass(data, array) {
+      data.forEach(function (address) {
+        jsonData.push({
+          'orgId': address.fields.orgID,
+          'fields': address.fields,
+          'address': address.fields.street + ', ' + address.fields.city + ', ' +
+            address.fields.state + ' ' + address.fields.zipCode
+        })
+      })
+      // console.log("Output from jsonPass function in base.html: ")
+      // console.log(jsonData);
+
+      return jsonData;
+    }
+
+    // run jsonPass function and store result in jsonTest
+    // TODO: rename jsonTest lol
+    const jsonTest = jsonPass({{ json_data | safe }}, jsonData);
+  </script>
+
+
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&libraries=places&callback=initMap">
   </script>
-  <!-- Load in custom main.js file-->
+
   <script type="text/javascript" src="{% static "js/main.js" %}"></script>
+
+
 
 </body>
 
