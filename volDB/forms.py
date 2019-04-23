@@ -20,6 +20,11 @@ class ResultsPageForm(forms.Form):
                                             initial=0, 
                                             widget=forms.Select(attrs={'class' : 'col-sm-3'})
                                             )
-    myLocation = forms.CharField(max_length=100, label='Start Location', widget=forms.TextInput(attrs={'id': 'searchLocation', 'class':'col-sm-3'}), required=False)
-    radius = forms.IntegerField(label='Radius', widget=forms.NumberInput(attrs={'class': 'col-sm-1'}), required=False, min_value=0)
+    location = forms.ModelChoiceField(queryset=Location.objects.all(), 
+                                    required=False, 
+                                    initial=0,
+                                    widget=forms.Select(attrs={'class' : 'col-sm-3'}))
+    # Uses Google places API and radius field
+    # myLocation = forms.CharField(max_length=100, label='Start Location', widget=forms.TextInput(attrs={'id': 'searchLocation', 'class':'col-sm-3'}), required=False)
+    # radius = forms.IntegerField(label='Radius', widget=forms.NumberInput(attrs={'class': 'col-sm-1'}), required=False, min_value=0)
   

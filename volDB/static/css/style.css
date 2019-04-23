@@ -159,10 +159,15 @@ button:hover{
   top: 0;
 }
 
-
 #resultsList h3 {
   position: relative;
   left: 10px;
+}
+
+
+/* --------- MODAL BUTTON STYLE ---------  */
+.button-text-height {
+  height: 70px;
 }
 
 /* Mobile media query */
