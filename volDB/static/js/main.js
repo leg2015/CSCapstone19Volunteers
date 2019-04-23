@@ -38,7 +38,7 @@ $('#howToButton').on("click", function() {
   html: '<h1 class="jumbotron-heading">This is your friendly how-to manual</h1><br><br>'+
   '<p>1) Click on the dropdown for category and select the category you would like to search under. <br></p>'+
   '<p>2) Click on the dropdown for location and select the location you would like to search in. <br></p>'+
-  '<p>3) Click the SEARCH button.<br><br></p>'+
+  '<p>3) Click the SEARCH button. <br></p>'+
   '<p> Cards with the available opportunities will appear on the left had side of the screen and a map will appear on the right hand side of the screen showing where the opportunities are in relation to you based on your search requirements, or if there are no opportunities available that match the search requirements.<br></p>'+
   '<p> To learn more about the organizations that appear in the search results, click on the Website link in the card and a new window will pop up with the website for that organization. <br></p>'+
   '<p> If you wish to contact the Office of Community-Engaged Learning, please click on the CONTACT US button at the top of the page. Thank you for visiting our page. <br></p>' +
