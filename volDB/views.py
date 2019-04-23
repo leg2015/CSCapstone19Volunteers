@@ -12,11 +12,11 @@ from .forms import ResultsPageForm as filterForm
 def index(request):
     categories = Category.objects.order_by('category')# create QuerySet with all categories in volDB
     locations = Location.objects.all()# create QuerySet with all locations in volDB
-    form = LandingPageForm()# default form
+    indexForm = LandingPageForm()# default form
     return render(request, 'index.html', {
         'categories': categories,
         'locations': locations,
-        'form': form
+        'indexForm': indexForm
     })
 
 # results view: takes POST request to render results page with data from landing page form
