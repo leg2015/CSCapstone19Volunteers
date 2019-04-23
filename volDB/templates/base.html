@@ -51,8 +51,8 @@
 
   <!-- Google Maps API || NOTE: HIDE API KEY BEFORE PUSHING PRODUCTION CODE -->
 
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&callback=initMap" async defer>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&callback=initMap"
+    async defer>
   </script>
 
   <!-- Pass json_data from views.py to main.js -->
@@ -77,11 +77,13 @@
     // run jsonPass function and store result in jsonTest
     // TODO: rename jsonTest lol
     const jsonTest = jsonPass({{ json_data | safe }}, jsonData);
+  </script>
+
 
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&libraries=places&callback=initMap">
   </script>
-  <!-- Load in custom main.js file-->
+
   <script type="text/javascript" src="{% static "js/main.js" %}"></script>
 
 
