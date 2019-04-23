@@ -20,14 +20,14 @@ async function initMap() {
 
   if (hasCenter) {
     determineCenter();
-    //centerLatLng = ;
-    console.log(centerLatLng);
+    // console.log(centerLatLng);
 
     console.log("Center calcualted, re-drawing map");
 
-    console.log(latAvg);
-    console.log(lngAvg);
+    // console.log(latAvg);
+    // console.log(lngAvg);
 
+    // re-render map with new center, calculated in determineCenter()
     map = new google.maps.Map(
       document.getElementById('map'), {
         zoom: 10,
@@ -158,14 +158,16 @@ async function drawMarker(response) {
   console.log(count);
 
   // create a new marker 
-  var marker = new google.maps.Marker({
-    position: {
-      lat: lat,
-      lng: lng
-    },
-    map: map,
-    title: formatted_address
-  });
+
+    var marker = new google.maps.Marker({
+      position: {
+        lat: lat,
+        lng: lng
+      },
+      map: map,
+      title: formatted_address
+    });
+
   // Places API autocomplete
   var input = document.getElementById('searchLocation');
   var autocomplete = new google.maps.places.Autocomplete(input);
