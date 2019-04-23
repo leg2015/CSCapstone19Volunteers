@@ -1,14 +1,16 @@
 {% extends 'results.html' %}
 {% block organizationCards %}
   <!-- display search criteria from previous search -->
+  <span id="resultsBadges">
     {% if category == None %}
       <span class="col-sm-12 col-md-3 display-results">Any Category</span>
     {% else %}
-      <span class="col-sm-12 col-md-3 display-results">Category: {{ category }}</span>
+      <span class="col-sm-12 col-md-3 display-results"><strong>Category:</strong> {{ category }}</span>
     {% endif %}
     {% if location != None %}
       <span class="col-sm-12 col-md-3 display-results">{{ location }}</span>
     {% endif %}
+  </span>
 
     <!-- for each organization/address tuple in resultsWithAddresses (see views.py) -->
     {% comment %} {% for organization, address in resultsWithAddresses %}
@@ -26,7 +28,10 @@
   <div class="card result">
     <div class="card-body">
       <h5 class="card-title"><strong>{{ organization.name }}</strong></h5>
-      <h6 class="card-subtitle mb-2 text-muted"> {{ organization.Location }}</h6>
+      <h6 class="card-subtitle mb-2 text-muted"> 
+        {% comment %} <span class="col-sm-12 col-md-3 display-results">{{ organization.category }}</span>
+        <span class="col-sm-12 col-md-3 display-results">{{ organization.location }}</span> {% endcomment %}
+      </h6>
       <p class="card-text"> <b>Mission:</b> {{ organization.mission }}</p>
 
     {% comment %} moar comments yay {% endcomment %}
