@@ -26,12 +26,6 @@ def queryCategory(Queryset, cat):
     return Queryset.filter(category=cat)
 def queryLocation(Queryset, loc):
     return Queryset.filter(location=loc)
-def queryRadius(Queryset, addresses, radius):
-    # Search for organizations within radius of user defined location
-
-    # Place pin for organizations within radius
-
-    return (Queryset, addresses)
 
 # results view: takes POST request to render results page with data from landing page form
 def results(request):
@@ -45,7 +39,6 @@ def results(request):
         keys = form_data.keys()
         results = Organization.objects.filter(isVisible=True)
         location = None
-        radius = 0
         if 'location' in keys: # field is only in LandingPageForm
             location = form_data['location']
             if form_data['location'] != None:
@@ -75,11 +68,6 @@ def results(request):
         if 'myLocation' in keys:
             # print(form_data['myLocation'])
             location = form_data['myLocation']
-            if form_data['myLocation'] != "":
-                radius = 50
-                if form_data['radius'] != None:
-                    radius = form_data['radius']
-                results, addresses = queryRadius(results, addresses, radius)
 
         # zip together results and addresses to pass to results.html 
         resultsWithAddresses = zip(results, addresses)
@@ -89,7 +77,6 @@ def results(request):
             category = form_data['category'].category
         if location == "":
             location = None
-        print(category, location, radius)
         # create arguments dict that holds the form and filtered results to pass to 
         args = {
             'filterForm': filterForm,
@@ -97,8 +84,7 @@ def results(request):
             'addresses': addresses,
             'resultsWithAddresses': resultsWithAddresses,
             'category': category,
-            'location': location,
-            'radius': radius,
+            'location': location
         }
 
         # render request: uses organizationCards.html (which extends results.html)
