@@ -83,10 +83,16 @@ a:hover {
 }
 
 .display-results {
+  display: inline-block;
   background: #e9ecef;
   padding: 10px;
-  margin-left: 10px;
+  margin: 10px;
   border-radius: 5px;
+}
+
+#resultsBadges {
+  display: flex;
+  margin: auto 0;
 }
 /* #filterBarContent form {
   position: relative;
@@ -151,6 +157,12 @@ button:hover{
 
 .fill:hover:before {
   top: 0;
+}
+
+
+#resultsList h3 {
+  position: relative;
+  left: 10px;
 }
 
 /* Mobile media query */
