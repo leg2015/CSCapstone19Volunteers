@@ -12,10 +12,35 @@
   <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700|Playfair+Display" rel="stylesheet">
 
   <!-- Bootstrap & custom CSS -->
-  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" >
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 
+  <link rel="shortcut icon" href="{% static '/favicon.ico' %}">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <!-- IE --> 
+  {% comment %} <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /> {% endcomment %}
+  <!-- other browsers -->
+  {% comment %} <link rel="icon" type="image/x-icon" href="favicon.ico" /> {% endcomment %}
   <title>CS Capstone 2019: Volunteer Database</title>
+  {% comment %} <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff"> {% endcomment %}
+
 
 </head>
 
@@ -25,7 +50,8 @@
     <h5 class="my-0 mr-md-auto font-weight-bold"> <a href="{% url 'index' %}">Voluntunity</a> </h5>
     <nav class="my-2 my-md-0 mr-md-3">
       <a class="btn btn-outline-secondary" href="{% url 'results' %}">BROWSE</a>
-      <a class="p-2 text-dark" href="#">ABOUT</a> <!-- use AJAX to load in about page? use pop-up? -->
+      <a class="p-2 text-dark" href="#" id="howToButton">HOW TO</a> <!-- used sweetalert2 to create pop up -->
+      <a class="p-2 text-dark" href=https://www.southwestern.edu/community-engaged-learning/ target="_blank">CONTACT US</a>
       <a class="p-2 text-dark" href="{% url 'login' %}">ADMIN LOGIN</a>
     </nav>
   </div>
@@ -36,18 +62,51 @@
 
   <!-- JavaScript plugins for BootStrap -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+
+  <!-- Axois library for easy Maps API Geocode GET request handling -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <!-- Google Maps API || NOTE: HIDE API KEY BEFORE PUSHING PRODUCTION CODE -->
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&libraries=places&callback=initMap">
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXKsysbYwfZ89T85u9Na24a0wlUMG7Txg&callback=initMap"
+    async defer>
   </script>
+
+  <!-- Pass json_data from views.py to main.js -->
+  <script type="text/javascript">
+    var jsonData = [];
+    // Grab data from serialized json object (passed in base.html) 
+    function jsonPass(data, array) {
+      data.forEach(function (address) {
+        jsonData.push({
+          'orgId': address.fields.orgID,
+          'fields': address.fields,
+          'address': address.fields.street + ', ' + address.fields.city + ', ' +
+            address.fields.state + ' ' + address.fields.zipCode
+        })
+      })
+      // console.log("Output from jsonPass function in base.html: ")
+      // console.log(jsonData);
+
+      return jsonData;
+    }
+
+    // run jsonPass function and store result in jsonTest
+    // TODO: rename jsonTest lol
+    const jsonTest = jsonPass({{ json_data | safe }}, jsonData);
+  </script>
+
   <!-- Load in custom main.js file-->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
   <script type="text/javascript" src="{% static "js/main.js" %}"></script>
 
 </body>
