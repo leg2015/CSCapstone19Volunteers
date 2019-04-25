@@ -164,6 +164,14 @@ button:hover{
   left: 10px;
 }
 
+#id_category {
+  margin: 10px 50px 10px 10px;
+}
+
+#id_location {
+  margin: 10px 20px;
+}
+
 
 /* --------- MODAL BUTTON STYLE ---------  */
 .button-text-height {
@@ -198,4 +206,21 @@ button:hover{
   .fill {
     width: 97%;
   }
+
+  #nav nav a {
+    margin: 0 auto;
+  }
+
+  #id_category {
+    margin: 10px 100px 10px 10px;
+  }
+
+  #id_location {
+    margin: 10px 20px;
+  }
+
+  #filterBar {
+    max-height: 13em;
+  }
+  
 }
