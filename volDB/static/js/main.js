@@ -211,7 +211,7 @@ function drawMarkers() {
 }
 
 async function determineCenter() {
-  c//onsole.log(latLngList);
+  //console.log(latLngList);
   count = 0;
   var outsideAreaCount = 0;
 
