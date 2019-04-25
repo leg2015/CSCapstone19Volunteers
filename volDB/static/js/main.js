@@ -262,7 +262,8 @@ $('#howToButton').on("click", function() {
   '<p> Cards with the available opportunities will appear on the left had side of the screen and a map will appear on the right hand side of the screen showing where the opportunities are based on your search requirements, or if there are no opportunities available that match the search requirements.<br></p>'+
   '<p> To learn more about the organizations that appear in the search results, click on the Website link in the card and a new window will pop up with the website for that organization. <br></p>'+
   '<p> If you wish to contact the Office of Community-Engaged Learning, please click on the CONTACT US button at the top of the page. Thank you for visiting our page. <br></p>' +
-  '<video width="450" height="300" controls> <source src="/static/images/HowToSearchVideo.mp4" type="video/mp4"> Your browser does not support the video tag. </video>',
+  '<video width="450" height="300" controls> <source src="/static/images/HowToSearchVideo.mp4" type="video/mp4"> Your browser does not support the video tag. </video>' +
+  '<br><br><p>Created by Colin Scruggs, Lauren Gillespie, Sara Boyd, Taylor Axtell, and Danielle Orbach as part of our senior capstone project.</p>',
   showCloseButton: true,
   confirmButtonClass: 'button-text-height',
   confirmButtonText: 'OK',
