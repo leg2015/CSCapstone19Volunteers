@@ -22,7 +22,7 @@ async function initMap() {
     determineCenter();
     // console.log(centerLatLng);
 
-    console.log("Center calcualted, re-drawing map");
+    //console.log("Center calcualted, re-drawing map");
 
     // console.log(latAvg);
     // console.log(lngAvg);
@@ -42,7 +42,7 @@ async function initMap() {
       });
   } else {
   // The map, centered at given location
-  console.log("No center calculated, rendering default map");
+  // console.log("No center calculated, rendering default map");
   map = new google.maps.Map(
     document.getElementById('map'), {
       zoom: 10,
@@ -85,7 +85,7 @@ function startTimer(duration) {
 
 async function checkMarkers() {
   if(count >= jsonData.length && !hasCenter) {
-    console.log("Houston, we have landed");
+    // console.log("Houston, we have landed");
     hasCenter = true;
     initMap();
   }
@@ -154,8 +154,8 @@ async function drawMarker(response) {
 
   count++; // add one to count
 
-  console.log(latLngList);
-  console.log(count);
+  //console.log(latLngList);
+  //console.log(count);
 
   // create a new marker 
 
@@ -211,31 +211,31 @@ function drawMarkers() {
 }
 
 async function determineCenter() {
-  console.log(latLngList);
+  c//onsole.log(latLngList);
   count = 0;
   var outsideAreaCount = 0;
 
   latLngList.forEach(latLngEntry => {
     if(latLngEntry.lat <= 34 && latLngEntry.lat >= 27 && latLngEntry.lng >= -106 && latLngEntry.lng <= -94) {
       
-      console.log(latLngEntry.lat);
-      console.log(latLngEntry.lng);
+      //console.log(latLngEntry.lat);
+      //console.log(latLngEntry.lng);
       count++;
       latAvg += latLngEntry.lat;
       lngAvg += latLngEntry.lng;
     }
   })
 
-  console.log("---------");
-  console.log(latAvg);
-  console.log(lngAvg);
-  console.log(count);
+  //console.log("---------");
+  //console.log(latAvg);
+  //console.log(lngAvg);
+  //console.log(count);
 
   latAvg /= count;
   lngAvg /= count;
 
-  console.log("output from determineCenter: ");
-  console.log("latAvg: " + latAvg + " | lngAvg:" + lngAvg);
+  //console.log("output from determineCenter: ");
+  //console.log("latAvg: " + latAvg + " | lngAvg:" + lngAvg);
 
   return {
     'latAvgResult': latAvg,
@@ -249,7 +249,7 @@ $( document ).ready(function() {
   $("#id_category option:first-child").text("Any Category");
   $("#id_location option:first-child").text("Any Location");
 
-  console.log("method fired");
+  //console.log("method fired");
 
   // Use sweetalert2 to show How To message
 $('#howToButton').on("click", function() {
@@ -281,7 +281,7 @@ $('#howToButton').on("click", function() {
     $( ".website_link" ).each(function(index, result) {
       var resultLink = $( this ).attr("href"); // grab each card's linked website
       // if the link is missing 'http://'
-      console.log("result link is ", resultLink);
+      //console.log("result link is ", resultLink);
       // HIHIHIHIH
       if(resultLink.startsWith("www")|| !resultLink.startsWith("h")) {
         var newLink = "http://" + resultLink;
