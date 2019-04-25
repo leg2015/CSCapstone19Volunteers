@@ -4,20 +4,20 @@ from .models import Location
 from .models import Organization
 
 class LandingPageForm(forms.Form):
-    category = forms.ModelChoiceField(queryset=Category.objects.order_by('category'), 
+    category = forms.ModelChoiceField(queryset=Category.objects.order_by('category').exclude(category='.').exclude(category=''), 
                                             required=False, 
                                             widget=forms.Select(attrs={'class' : 'form-control btn btn-light dropdown-toggle',
                                                                 'type' : 'button', 'data-toggle' : 'dropdown'}),
                                             initial=0
                                             )
-    location = forms.ModelChoiceField(queryset=Location.objects.all(), 
+    location = forms.ModelChoiceField(queryset=Location.objects.exclude(location='').exclude(location='.'), 
                                     required=False, 
                                     initial=0,
                                     widget=forms.Select(attrs={'class' : 'form-control btn btn-light dropdown-toggle',
                                                                 'type' : 'button', 'data-toggle' : 'dropdown'}))
 
 class ResultsPageForm(forms.Form):
-    category = forms.ModelChoiceField(queryset=Category.objects.order_by('category'), 
+    category = forms.ModelChoiceField(queryset=Category.objects.order_by('category').exclude(category='.').exclude(category=''), 
                                             required=False, 
                                             initial=0, 
                                             widget=forms.Select(attrs={'class' : 'col-sm-3 form-control btn btn-secondary dropdown-toggle',
