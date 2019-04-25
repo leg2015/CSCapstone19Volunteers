@@ -31,7 +31,7 @@ a:hover {
 /* --------- RESULTS STYLES ---------  */
 
 #map {
-  background-color: peachpuff;
+  background-color: #e9ecef;
   min-height: 88vh;
   overflow-y: auto;
   margin-top: 5px;
@@ -184,7 +184,6 @@ button:hover{
 
 @media only screen and (max-width: 600px) {
   #map {
-    background-color: peachpuff;
     min-height: 50vh;
   }
   
