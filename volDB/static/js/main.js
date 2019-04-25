@@ -283,7 +283,7 @@ $('#howToButton').on("click", function() {
       // if the link is missing 'http://'
       console.log("result link is ", resultLink);
       // HIHIHIHIH
-      if(resultLink.startsWith("www")) {
+      if(resultLink.startsWith("www")|| !resultLink.startsWith("h")) {
         var newLink = "http://" + resultLink;
         // Change the href attribute of each link with a newly concatenated URL string
         $( this ).attr("href", newLink);        
