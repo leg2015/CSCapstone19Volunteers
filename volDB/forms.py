@@ -23,7 +23,7 @@ class ResultsPageForm(forms.Form):
                                             widget=forms.Select(attrs={'class' : 'col-sm-3 form-control btn btn-secondary dropdown-toggle',
                                                                 'type' : 'button', 'data-toggle' : 'dropdown'})
                                             )
-    location = forms.ModelChoiceField(queryset=Location.objects.all(), 
+    location = forms.ModelChoiceField(queryset=Location.objects.exclude(location='').exclude(location='.'), 
                                     required=False, 
                                     initial=0,
                                     widget=forms.Select(attrs={'class' : 'col-sm-3 form-control btn btn-secondary dropdown-toggle',
