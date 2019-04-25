@@ -165,11 +165,13 @@ button:hover{
 }
 
 #id_category {
-  margin: 10px 50px 10px 10px;
+  margin: 10px 10px 10px 10px;
 }
 
-#id_location {
-  margin: 10px 20px;
+#filterBarContent form button {
+  position: relative;
+  float: right;
+  margin-right: 25px;
 }
 
 
