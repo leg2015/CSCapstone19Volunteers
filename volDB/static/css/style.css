@@ -31,7 +31,7 @@ a:hover {
 /* --------- RESULTS STYLES ---------  */
 
 #map {
-  background-color: peachpuff;
+  background-color: #e9ecef;
   min-height: 88vh;
   overflow-y: auto;
   margin-top: 5px;
@@ -176,15 +176,16 @@ button:hover{
 
 
 /* --------- MODAL BUTTON STYLE ---------  */
+/*
 .button-text-height {
   height: 70px;
 }
+*/
 
 /* Mobile media query */
 
 @media only screen and (max-width: 600px) {
   #map {
-    background-color: peachpuff;
     min-height: 50vh;
   }
   
