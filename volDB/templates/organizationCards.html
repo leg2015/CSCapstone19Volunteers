@@ -14,17 +14,6 @@
     {% endif %}
   </span>
 
-    <!-- for each organization/address tuple in resultsWithAddresses (see views.py) -->
-    {% comment %} {% for organization, address in resultsWithAddresses %}
-    <div class="card result">
-      <div class="card-body">
-        <h5 class="card-title"><strong>{{ organization.name }}</strong></h5>
-        <h6 class="card-subtitle mb-2 text-muted"> {{ organization.Location }}</h6>
-        <p class="card-text"> Mission: {{ organization.mission }}</p>
-        <p class="card-text"> Address: {{ address.street }} {{ address.city }}, {{ address.state }} {{ address.zipCode}}</p>
-        <a href="{{ organization.website }}" class="" target="_blank">Website</a>
-      </div>
-    </div> {% endcomment %}
   <!-- Render cards without addresses: -->
 {% for organization in results %}
   <div class="card result">
@@ -35,9 +24,6 @@
         <span class="col-sm-12 col-md-3 display-results">{{ organization.location }}</span> {% endcomment %}
       </h6>
       <p class="card-text"> <b>Mission:</b> {{ organization.mission }}</p>
-
-    {% comment %} moar comments yay {% endcomment %}
-     {% comment %} {{ Book.objects.filter(author__isnull=True). }}  {% endcomment %}
 
       {% if organization.opportunities == "." or organization.opportunites == '' %} 
        <p class="card-opp"> <b>Volunteering Opportunities:</b> N/A</p>
@@ -52,7 +38,7 @@
       {% else %}
       <a href="{{ organization.website }}" class="website_link" target="_blank"><button type="button" class="fill">Website</button></a>
       {% endif %}
-
+      <button type="button" class="fill mapMarkerToggle" onClick="addOrganizationPin( {{ organization.orgID }} )">Show on Map</button>
     </div>
   </div> 
 
@@ -66,11 +52,5 @@
   </div>
 
   {% endfor %}
-
-  {% comment %} 
-  Print out addresses found in Addresses
-  {% for address in addresses %}
-    <p>{{ address.street }} </p>
-  {% endfor %} {% endcomment %}
 
 {% endblock %}

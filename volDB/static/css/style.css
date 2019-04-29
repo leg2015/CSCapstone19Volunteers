@@ -176,11 +176,6 @@ button:hover{
 
 
 /* --------- MODAL BUTTON STYLE ---------  */
-/*
-.button-text-height {
-  height: 70px;
-}
-*/
 
 /* Mobile media query */
 
@@ -204,6 +199,12 @@ button:hover{
     margin: auto 0;
     position: relative;
     left: 0;
+  }
+
+  #refineSearchButton {
+    margin: auto;
+    margin-top: 0.6em;
+    max-width: 85%;
   }
 
   .fill {
