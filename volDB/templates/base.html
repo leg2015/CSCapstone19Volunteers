@@ -22,7 +22,7 @@
   {% comment %} <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /> {% endcomment %}
   <!-- other browsers -->
   {% comment %} <link rel="icon" type="image/x-icon" href="favicon.ico" /> {% endcomment %}
-  <title>CS Capstone 2019: Volunteer Database</title>
+  <title>Voluntunity</title>
   {% comment %} <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
@@ -101,8 +101,15 @@
     }
 
     // run jsonPass function and store result in jsonTest
-    // TODO: rename jsonTest lol
-    const jsonTest = jsonPass({{ json_data | safe }}, jsonData);
+    // Parse current URL
+    var currentUrl = window.location.href;  
+
+    // If user is on the results page:
+    // TODO: MAKE SURE TO CHANGE URL CHECK ONCE WE'VE OBTAINED A DOMAIN NAME !!!
+    if(currentUrl === "http://127.0.0.1:8000/results") {
+      const jsonTest = jsonPass({{ json_data | safe }}, jsonData);
+    }
+
   </script>
 
   <!-- Load in sweetalert2 website and custom main.js file-->
