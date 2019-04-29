@@ -212,12 +212,15 @@ $( document ).ready(function() {
   $("#id_category option:first-child").text("Any Category");
   $("#id_location option:first-child").text("Any Location");
 
-  //console.log("method fired");
-
-  // Use sweetalert2 to show How To message
+  // Used sweetalert2 to create How To pop up
+  // When the HOW TO button is clicked a pop up is generated
 $('#howToButton').on("click", function() {
   Swal.fire({
+  // specifies the icon that appears at the top of the pop up box, question creates a question mark
   type: 'question',
+  // Used p tags to create paragraphs within a single html block, <br> adds a new line
+  // The + concatonates the paragraphs in the pop up, and the comma ends the html block
+  // Used a video tag to embed a how to tutorial video within the html block
   html: '<h1 class="jumbotron-heading">This is your friendly how-to manual</h1><br><br>'+
   '<p>1) Click on the dropdown for category and select the category you would like to search under. <br></p>'+
   '<p>2) Click on the dropdown for location and select the location you would like to search in. <br></p>'+
@@ -228,7 +231,7 @@ $('#howToButton').on("click", function() {
   '<video width="450" height="300" controls> <source src="/static/images/HowToSearchVideo.mp4" type="video/mp4"> Your browser does not support the video tag. </video>' +
   '<br><br><p>Created by Colin Scruggs, Lauren Gillespie, Sara Boyd, Taylor Axtell, and Danielle Orbach as part of our senior capstone project.</p>',
   showCloseButton: true,
-  confirmButtonClass: 'button-text-height',
+  //confirmButtonClass: 'button-text-height',
   confirmButtonText: 'OK',
   confirmButtonColor: '#FFCD00',
   });
@@ -245,7 +248,7 @@ $('#howToButton').on("click", function() {
       // if the link is missing 'http://'
       //console.log("result link is ", resultLink);
       // HIHIHIHIH
-      if(resultLink.startsWith("www")) {
+      if(resultLink.startsWith("www")|| !resultLink.startsWith("h")) {
         var newLink = "http://" + resultLink;
         // Change the href attribute of each link with a newly concatenated URL string
         $( this ).attr("href", newLink);        
