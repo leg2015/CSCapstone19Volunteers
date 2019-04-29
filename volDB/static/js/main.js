@@ -1,5 +1,6 @@
 /* Google Map API initialization */
 
+// Global variables:
 var map; // create global 'map' variable to be used throughout main.js
 var latAvg = 0.0;
 var lngAvg = 0.0;
@@ -18,6 +19,8 @@ async function initMap() {
     lng: -97.6651
   };
 
+  // if all the addresses have been geocoded and pins have been rendered on the map, recenter the map
+  // with the calculated center point
   if (hasCenter) {
     determineCenter();
     // console.log(centerLatLng);
@@ -53,20 +56,10 @@ async function initMap() {
     startTimer(1);
   }
 
-  // console.log(newCenter);
-
-
-  // map = new google.maps.Map(
-  //   document.getElementById('map'), {
-  //     zoom: 10,
-  //     center: await determineCenter()
-  //   });
-
-  // while(count < jsonData.length && count != 0) {
-  // }
-
 }
 
+// startTimer:
+// runs the checkMarkers function for 10 seconds to check if the geocoding is complete to recenter the map
 function startTimer(duration) {
   var timer = duration, minutes, seconds;
   setInterval(function () {
@@ -83,6 +76,8 @@ function startTimer(duration) {
   }, 1000);
 }
 
+// checkMarkers:
+// controls the 'hasCenter' variable which will run the initMap() function to recenter the map after flipping the boolean value
 async function checkMarkers() {
   if(count >= jsonData.length && !hasCenter) {
     // console.log("Houston, we have landed");
@@ -91,31 +86,9 @@ async function checkMarkers() {
   }
 }
 
-// function recenterMap() {
-//   console.log("recenterMap entered");
-
-//   var markers_promise = new Promise(function(resolve, reject) {
-//     // do a thing, possibly async, then…
-//     // while(count < jsonData.length)
-//     if (count === jsonData.length) {
-//       resolve("Stuff worked!");
-//     }
-//     else {
-//       reject(Error("It broke"));
-//     }
-//   });
-
-//   console.log("promise created");
-
-//   markers_promise.then(function(result) {
-//     console.log(result); // "Stuff worked!"
-//   }, function(err) {
-//     console.log(err); // Error: "It broke"
-//   });
-// }
-
 /* Address logic  */
 
+// geocode:
 // Asyncronously recieve geocoding information from API (using Axios library) with a given address string
 async function geocode(addressStr) {
   await axios.get('https://maps.googleapis.com/maps/api/geocode/json?', {
@@ -136,7 +109,8 @@ async function geocode(addressStr) {
   })
 }
 
-// drawMarker: asyncronously draw a marker on map after waiting for the geocode method to fetch data
+// drawMarker: 
+// asyncronously draw a marker on map after waiting for the geocode method to fetch data
 async function drawMarker(response) {
   // console.log("output from drawMarker function:");
   // console.log(response);
@@ -159,67 +133,53 @@ async function drawMarker(response) {
 
   // create a new marker 
 
-    var marker = new google.maps.Marker({
-      position: {
-        lat: lat,
-        lng: lng
-      },
-      map: map,
-      title: formatted_address
-    });
+  var marker = new google.maps.Marker({
+    position: {
+      lat: lat,
+      lng: lng
+    },
+    map: map,
+    title: formatted_address
+  });
 
-  // Places API autocomplete
-  var input = document.getElementById('searchLocation');
-  var autocomplete = new google.maps.places.Autocomplete(input);
+  // Places API autocomplete; NOT CURRENTLY IN USE
+  // var input = document.getElementById('searchLocation');
+  // var autocomplete = new google.maps.places.Autocomplete(input);
 }
 
-
+// drawMarkers:
+// utilizes Google's geocode API to determine the latitude and longitudes for each address String
 function drawMarkers() {
-
   if(latLngList.length != jsonData.length) {
-  jsonData.forEach(function (addressInfo) {
-    // access each address object's formatted address field from database
-    var addressString = addressInfo.address;
-    // console.log(addressString);
+    jsonData.forEach(function (addressInfo) {
+      // access each address object's formatted address field from database
+      var addressString = addressInfo.address;
 
-    // declare addressInfo to be assigned output from geocode Promise
-    var addressObj;
-    addressObj = geocode(addressString).then(response => {
-      // console.log("result from geocode: " + response);
-      // console.log("addressObj after assignment: " + addressObj);
-      return response;
-    }).catch(error => {
-      console.log(error.message);
-    });
-
-    //return determineCenter();
-    // addressObj.then(result => {
-    //   console.log(result);
-    // });
-
-    // var marker = new google.maps.Marker({
-    //   //position: addressObj.results[0].formatted_address,
-    //   position: {    lat: 30.6349,
-    //     lng: -97.6651},
-    //   map: map,
-    //   //title: addressObj.results[0].geometry.location
-    // });
-
-    // marker.setMap(map);
-  }) 
-}
+      // declare addressInfo to be assigned output from geocode Promise
+      var addressObj;
+      addressObj = geocode(addressString).then(response => {
+        // console.log("result from geocode: " + response);
+        // console.log("addressObj after assignment: " + addressObj);
+        return response;
+      }).catch(error => {
+        console.log(error.message);
+      });
+    }) 
+  }
 }
 
+// determineCenter:
+// asyncronously determines the average of all the rendered pins currently on the map
 async function determineCenter() {
   //console.log(latLngList);
-  count = 0;
-  var outsideAreaCount = 0;
+  count = 0; // 
 
+  // for each latLng in the list, check if it's within the bounds of Texas
   latLngList.forEach(latLngEntry => {
     if(latLngEntry.lat <= 34 && latLngEntry.lat >= 27 && latLngEntry.lng >= -106 && latLngEntry.lng <= -94) {
-      
       //console.log(latLngEntry.lat);
       //console.log(latLngEntry.lng);
+      // If so, then add one to count and to both lat/lng averages
       count++;
       latAvg += latLngEntry.lat;
       lngAvg += latLngEntry.lng;
@@ -231,18 +191,21 @@ async function determineCenter() {
   //console.log(lngAvg);
   //console.log(count);
 
+  // calculate averages using the count variable
   latAvg /= count;
   lngAvg /= count;
 
   //console.log("output from determineCenter: ");
   //console.log("latAvg: " + latAvg + " | lngAvg:" + lngAvg);
 
+  // return results for use in any potential callback methods
   return {
     'latAvgResult': latAvg,
     'lngAvgResult': lngAvg
   };
 }
 
+// Run these jQuery/SWAL2 functionalities once DOM has been loaded
 $( document ).ready(function() {
   // Replace default HTML text in landing page select "---------"
   // with custom default 'any thing'
@@ -272,9 +235,7 @@ $('#howToButton').on("click", function() {
   confirmButtonText: 'OK',
   confirmButtonColor: '#FFCD00',
   });
-  })
-
-
+})
   
   // Parse current URL
   var currentUrl = window.location.href;  
