@@ -12,12 +12,12 @@ from .models import *
 # admin.site.register(Address)
 
 class CategoryAdmin(admin.ModelAdmin):
-    def get_ordering(self, request):
+    def get_ordering(self, request): # orders entries alphabetically
         return ['category']
 admin.site.register(Category, CategoryAdmin)
 
 class LocationAdmin(admin.ModelAdmin):
-    def get_ordering(self, request):
+    def get_ordering(self, request): # orders entries alphabetically
         return ['location']
 admin.site.register(Location, LocationAdmin)
 
@@ -30,11 +30,12 @@ class EmailAdmin(admin.TabularInline):
 class AddressAdmin(admin.TabularInline):
     model = Address
 class OrganizationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'isVisible')
-    list_filter = ('category', 'location')
+    list_display = ('name', 'isVisible') # information to be displayed on the model page
+    list_filter = ('category', 'location') # add filter options
+    # enables editing these models within the same page as the orgnaizaiton admin page
     inlines = [PhoneAdmin, EmailAdmin, AddressAdmin]
-    search_fields = ['name']
-    def get_ordering(self, request):
+    search_fields = ['name'] # adds type in search bar for organizaiton name
+    def get_ordering(self, request): # orders entries alphabetically
         return ['name']
 
 admin.site.register(Organization, OrganizationAdmin)
