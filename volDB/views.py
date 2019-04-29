@@ -128,7 +128,7 @@ def results(request):
 
         # made a QuerySet of Address objects filtered from the orgIDs in the above list
         addresses = Address.objects.filter(orgID__in=results_orgIDs)
-        print(keys)
+        # print(keys)
         if 'myLocation' in keys:
             # print(form_data['myLocation'])
             location = form_data['myLocation']
