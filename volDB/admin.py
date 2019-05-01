@@ -10,12 +10,12 @@ from .models import *
 # admin.site.register(Email)
 
 # admin.site.register(Address)
-
+# sets organization category as a base filter for admin site
 class CategoryAdmin(admin.ModelAdmin):
     def get_ordering(self, request): # orders entries alphabetically
         return ['category']
 admin.site.register(Category, CategoryAdmin)
-
+# sets location  as a base filter for admin site
 class LocationAdmin(admin.ModelAdmin):
     def get_ordering(self, request): # orders entries alphabetically
         return ['location']
