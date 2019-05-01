@@ -287,7 +287,7 @@ $('#howToButton').on("click", function() {
   '<p>1) Click on the dropdown for category and select the category you would like to search under. <br></p>'+
   '<p>2) Click on the dropdown for location and select the location you would like to search in. <br></p>'+
   '<p>3) Click the SEARCH button. <br></p>'+
-  '<p> Cards with the available opportunities will appear on the left had side of the screen and a map will appear on the right hand side of the screen and if you click the SHOW ON MAP button a pin will show where the opportunity is based on your search requirements, or if there are no opportunities available that match the search requirements no map will render.<br></p>'+
+  '<p> Cards with the available opportunities will appear on the left had side of the screen and a map will appear on the right hand side of the screen, and if you click the SHOW ON MAP button, a pin will show where the opportunity is based on your search requirements, or if there are no opportunities available that match the search requirements no map will render.<br></p>'+
   '<p> To learn more about the organizations that appear in the search results, click on the WEBSITE button in the card and a new window will pop up with the website for that organization. <br></p>'+
   '<p> If you wish to contact the Office of Community-Engaged Learning, please click on the CONTACT US button at the top of the page. Thank you for visiting our page. <br></p>' +
   '<video width="450" height="300" controls> <source src="/static/images/HowToSearchVideo.mp4" type="video/mp4"> Your browser does not support the video tag. </video>' +
