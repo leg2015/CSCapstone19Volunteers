@@ -9,6 +9,13 @@ from .forms import LandingPageForm
 from .forms import ResultsPageForm as filterForm 
 
 # index view: will render index.html upon request
+'''
+Creates and renders all the django objects we need for the index.html.
+Categories is a django queryset that contains all the possible relevant organizations
+locations is a django queryset that contains all the possible relevant locations
+indexform comes from forms.py and contains all the relevant dropdown information.
+Render renders these objects to the html for display purposes
+'''
 def index(request):
     categories = Category.objects.order_by('category').exclude(category='.').exclude(category='') # create QuerySet with all categories in volDB
     locations = Location.objects.exclude(location='').exclude(location='.') # create QuerySet with all locations in volDB
@@ -26,12 +33,12 @@ def results(request):
         form_data = form.cleaned_data
 
     # filter organizations based on location and category chosen on landing page form
-    locationSelect = form_data['location']
-    categorySelect = form_data['category']
+    locationSelect = form_data['location'] # get the chosen location
+    categorySelect = form_data['category'] # get the chosen category
 
     print("Location select is ", form_data['location'])
     print("Category select is ", form_data['category'])
-    if locationSelect is None and categorySelect is None:
+    if locationSelect is None and categorySelect is None: # display everything if all category chosen
         results = Organization.objects.all()
         print("queryset is " + str(results))
     elif locationSelect is None:
