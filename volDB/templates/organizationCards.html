@@ -38,10 +38,7 @@
       {% else %}
       <a href="{{ organization.website }}" class="website_link" target="_blank"><button type="button" class="fill">Website</button></a>
       {% endif %}
-      <!-- <p class="card-opp"> {{ organization.orgID }}</p>
-      <p class="card-opp"> start {{ json_data }} end</p> -->
-      <button type="button" class="fill mapMarkerToggle" onClick="addOrganizationPin( {{ organization.orgID }}, {{ json_data }} )">Show on Map</button>
-      <!-- <button type="button" class="fill mapMarkerToggle" onClick="addOrganizationPin( {{ jason_data }} )">Show on Map</button> -->
+      <button type="button" class="fill mapMarkerToggle" onClick="addOrganizationPin( {{ organization.orgID }}, {{ json_data }}, {{ organization.name|stringformat:'a' }} )">Show on Map</button>
     </div>
   </div> 
 
