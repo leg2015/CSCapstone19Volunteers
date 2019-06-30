@@ -91,7 +91,7 @@ async function checkMarkers() {
 
 // geocode:
 // Asyncronously recieve geocoding information from API (using Axios library) with a given address string
-async function geocode(addressStr) {
+async function geocode(addressStr, orgName) {
   await axios.get('https://maps.googleapis.com/maps/api/geocode/json?', {
     params: {
       address: addressStr,
@@ -101,7 +101,7 @@ async function geocode(addressStr) {
     // log full response
     // console.log(response);
     responseList.push(response);
-    drawMarker(response, false);
+    drawMarker(response, false, orgName);
     // TODO: pass organization name along with json data for adding labels to markers
 
     return response;
@@ -112,7 +112,7 @@ async function geocode(addressStr) {
 
 // drawMarker: 
 // asyncronously draw a marker on map after waiting for the geocode method to fetch data
-async function drawMarker(response, isLatLng) {
+async function drawMarker(response, isLatLng, orgName) {
   // console.log("output from drawMarker function:");
   // console.log(response);
 
@@ -139,16 +139,31 @@ async function drawMarker(response, isLatLng) {
   //console.log(latLngList);
   //console.log(count);
 
-  // create a new marker 
-
+  // create a new marker
   var marker = new google.maps.Marker({
     position: {
       lat: lat,
       lng: lng
     },
     map: map,
-    title: formatted_address
+    title: orgName
   });
+
+  // Info Windows: https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+  var infowindow = new google.maps.InfoWindow({
+    content: orgName + '<br>' + formatted_address
+  });
+  // Hover to show organization name and addresss on map
+  marker.addListener('mouseover', function(){
+    infowindow.open(map, marker);
+  });
+  marker.addListener('mouseout', function(){
+    infowindow.close();
+  });
+  // Click to show organization name and address on map
+  // marker.addListener('click', function() {
+  //   infowindow.open(map, marker);
+  // });
 
   // Places API autocomplete; NOT CURRENTLY IN USE
   // var input = document.getElementById('searchLocation');
@@ -157,22 +172,22 @@ async function drawMarker(response, isLatLng) {
 
 // search:
 // returns the address String from jsonData that matches the orgId argument passed
-function search(orgIdKey){
-  console.log(orgIdKey);
-  for (var i=0; i < jsonData.length; i++) {
-      if (jsonData[i].orgId === orgIdKey) {
-          console.log(jsonData[i].address);
-          console.log("search worked!");
-          return jsonData[i].address;
+function search(orgIdKey, jsonData){
+  for (var i=0 ;i < jsonData.length; i++) {
+      if (jsonData[i].fields.orgID == orgIdKey) {
+          // console.log("search worked!");
+          var addressElements = jsonData[i].fields;
+          var address = addressElements.street + ',' + addressElements.city + ',' + addressElements.state;
+          return address;
       } else {
-          console.log("search didn't work :(");
+          // console.log("search didn't work :(");
       }
   }
 }
 
 // drawMarkers:
 // utilizes Google's geocode API to determine the latitude and longitudes for each address String
-function drawMarkers(individual, orgId) {
+function drawMarkers(individual, orgId, jsonData, orgName) {
   if(latLngList.length != jsonData.length && !individual) {
     jsonData.forEach(function (addressInfo) {
       // access each address object's formatted address field from database
@@ -184,7 +199,7 @@ function drawMarkers(individual, orgId) {
 
       // declare addressInfo to be assigned output from geocode Promise
       var addressObj;
-      addressObj = geocode(addressString).then(response => {
+      addressObj = geocode(addressString, orgName).then(response => {
         // console.log("result from geocode: " + response);
         // console.log("addressObj after assignment: " + addressObj);
         return response;
@@ -193,18 +208,29 @@ function drawMarkers(individual, orgId) {
       });
     })
   } else { // if using drawMarkers for an individual address
-    var addressString = search(orgId); // use the search method to grab the address string from jsonData
+    // console.log('one address');
+    var addressString = search(orgId, jsonData); // use the search method to grab the address string from jsonData
     // declare addressInfo to be assigned output from geocode Promise
-    console.log("Output from drawMarkers individual");
-    console.log(addressString);
-    var addressObj;
-    addressObj = geocode(addressString).then(response => {
-      // console.log("result from geocode: " + response);
-      // console.log("addressObj after assignment: " + addressObj);
-      return response;
-    }).catch(error => {
-      console.log(error.message);
-    });
+    // console.log("Output from drawMarkers individual");
+    // console.log('drawMarkers address: ', addressString);
+    if (!addressString.startsWith('P') && !addressString.startsWith('.')){
+      var addressObj;
+      addressObj = geocode(addressString, orgName).then(response => {
+        // console.log("result from geocode: " + response);
+        // console.log("addressObj after assignment: " + addressObj);
+        return response;
+      }).catch(error => {
+        console.log(error.message);
+      });
+    }
+    else {
+      // generate a error popup for organizations with no address or only a PO box
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: orgName +' does not have a physical address on file'
+      });
+    }
   }
 }
 
@@ -256,8 +282,8 @@ function recenterOnPin(latitude, longitude) {
     });
 }
 
-function addOrganizationPin(orgAddress) {
-  drawMarkers(true, orgAddress);
+function addOrganizationPin(orgID, json_addresses, orgName) {
+  drawMarkers(true, orgID, json_addresses, orgName);
   // TODO: accumulate pins on map
   // latLngList.forEach(latLng => {
   //   drawMarker({'lat' : latitude, 'lng' : longitude}, true);
