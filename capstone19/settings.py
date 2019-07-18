@@ -95,7 +95,7 @@ import pymysql #noqa: 402
 pymysql.install_as_MySQLdb()
 
 # [START db_setup]
-if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
+if os.getenv('GAE_APPLICATION', None):
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
     DATABASES = {
