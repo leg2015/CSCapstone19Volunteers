@@ -1,0 +1,230 @@
+/* --------- GLOBAL STYLES ---------  */
+
+#nav {
+  background-color: #FFCD00;
+}
+
+.jumbotron-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+}
+
+a, p, h5 {
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.form-control {
+  width: 40%;
+  margin: 0 auto;
+}
+
+/* --------- RESULTS STYLES ---------  */
+
+#map {
+  background-color: #e9ecef;
+  min-height: 88vh;
+  overflow-y: auto;
+  margin-top: 5px;
+}
+
+#resultsList {
+  padding: 10px;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.website_link {
+   color:#6faedc;
+   font-weight: bold;
+}
+
+.result {
+  margin: 10px;
+  transition:         0.75s ease;
+  -o-transition:      0.75s ease;
+  -ms-transition:     0.75s ease;
+  -moz-transition:    0.75s ease;
+  -webkit-transition: 0.75s ease;
+}
+
+.result:hover {
+  background: #FFFBEB;
+  transition:         0.75s ease;
+  -o-transition:      0.75s ease;
+  -ms-transition:     0.75s ease;
+  -moz-transition:    0.75s ease;
+  -webkit-transition: 0.75s ease;
+}
+
+/* --------- RESULTS PAGE SEARCH FORM --------- */
+.refine-search-bar {
+  width: 100%;
+}
+
+#filterBar {
+  height: 100px;
+  background: #e9ecef;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+}
+#filterBarContent {
+  width: 100%;
+}
+
+.display-results {
+  display: inline-block;
+  background: #e9ecef;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+#resultsBadges {
+  display: flex;
+  margin: auto 0;
+}
+/* #filterBarContent form {
+  position: relative;
+  left: 10%;
+  margin: auto 0;
+} */
+
+/* --------- BUTTON STYLE ---------  */
+/* button styling and fill inspired from https://codepen.io/anon/pen/MxYBMq 
+  designed to match Southwestern's style guide */
+
+button {
+  position: relative;
+  height: 50px;
+  width: 175px;
+  margin: 10px 7px;
+  padding: 5px 5px;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #FFCD00;
+  border: 3px #FFCD00 solid;
+  text-transform: uppercase;
+  outline: 0;
+  overflow:hidden;
+  background: white;
+  z-index: 1;
+  cursor: pointer;
+  text-decoration: none;
+  transition:         0.25s ease;
+  -o-transition:      0.25s ease;
+  -ms-transition:     0.25s ease;
+  -moz-transition:    0.25s ease;
+  -webkit-transition: 0.25s ease;
+}
+
+button a {
+  text-decoration: none;
+  color: #FFCD00;
+}
+
+button:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.fill:hover a {
+  color: white;
+}
+
+.fill:before {
+  content: "";
+  position: absolute;
+  background: #FFCD00;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 100%;
+  z-index: -1;
+  -webkit-transition: top 0.25s ease;
+}
+
+.fill:hover:before {
+  top: 0;
+}
+
+#resultsList h3 {
+  position: relative;
+  left: 10px;
+}
+
+#id_category {
+  margin: 10px 10px 10px 10px;
+}
+
+#filterBarContent form button {
+  position: relative;
+  float: right;
+  margin-right: 25px;
+}
+
+
+/* --------- MODAL BUTTON STYLE ---------  */
+
+/* Mobile media query */
+
+@media only screen and (max-width: 600px) {
+  #map {
+    min-height: 50vh;
+  }
+  
+  #resultsList {
+    padding: 10px;
+    max-height: 50vh;
+    position: relative;
+    /* top: 300px; */
+  }
+
+  #filterBar {
+    height: 320px;
+  }
+
+  #filterBarContent {
+    margin: auto 0;
+    position: relative;
+    left: 0;
+  }
+
+  #refineSearchButton {
+    margin: auto;
+    margin-top: 0.6em;
+    max-width: 85%;
+  }
+
+  .fill {
+    width: 97%;
+  }
+
+  #nav nav a {
+    margin: 0 auto;
+  }
+
+  #id_category {
+    margin: 10px 100px 10px 10px;
+  }
+
+  #id_location {
+    margin: 10px 20px;
+  }
+
+  #filterBar {
+    max-height: 13em;
+  }
+  
+}

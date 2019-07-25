@@ -28,7 +28,7 @@ VOL_DB_PASS = os.environ.get('VOL_DB_PASS', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://capstone19.appspot.com']
 
 
 # Application definition
@@ -167,3 +167,11 @@ STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 LOGOUT_REDIRECT_URL = 'logout'
 LOGIN_REDIRECT_URL = '/admin'
+
+# Django Deploy Checklist
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True # only set to false if want to allow non-SSL connections 
+X_FRAME_OPTIONS = 'DENY'

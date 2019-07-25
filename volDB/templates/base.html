@@ -106,7 +106,7 @@
 
     // If user is on the results page:
     // TODO: MAKE SURE TO CHANGE URL CHECK ONCE WE'VE OBTAINED A DOMAIN NAME !!!
-    if(currentUrl === "http://127.0.0.1:8000/results") {
+    if(currentUrl === "http://capstone19.appspot.com") { // http://127.0.0.1:8000/results
       const jsonTest = jsonPass({{ json_data | safe }}, jsonData);
     }
 
@@ -114,7 +114,7 @@
 
   <!-- Load in sweetalert2 website and custom main.js file-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-  <script type="text/javascript" src="{% static "js/main.js" %}"></script>
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
 </body>
 
