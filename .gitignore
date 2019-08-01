@@ -3,3 +3,4 @@ capstone19/__pycache__/*
 volDB/__pycache__/*
 volDB/migrations/__pycache__/*
 .vscode/*
+volDB/static/js/config.js
