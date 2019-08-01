@@ -118,7 +118,7 @@ button {
   text-transform: uppercase;
   outline: 0;
   overflow:hidden;
-  background: white;
+  background: #fff;
   z-index: 1;
   cursor: pointer;
   text-decoration: none;
@@ -136,11 +136,11 @@ button a {
 
 button:hover{
   text-decoration: none;
-  color: white;
+  color: #fff;
 }
 
 .fill:hover a {
-  color: white;
+  color: #fff;
 }
 
 .fill:before {
