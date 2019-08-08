@@ -7,8 +7,8 @@ runtime: python37     # TODO: Our project depends on 3.6.7, can we use this runt
 entrypoint: gunicorn -b :$PORT main:app
 
 env_variables:
-  SECRET_KEY: '***REMOVED***'
-  VOL_DB_PASS: '***REMOVED***'
+  SECRET_KEY: '8il090+f29o0^)*ir0u1%aeoh!3_fi3c5b@@d^s06!*o)-4&s1'
+  VOL_DB_PASS: 'V0lunte3r2K19!'
   PORT: 8080  
 
 handlers:
