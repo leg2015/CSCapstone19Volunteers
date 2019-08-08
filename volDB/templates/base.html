@@ -75,9 +75,9 @@
   <!-- Axois library for easy Maps API Geocode GET request handling -->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <!-- Google Maps API || NOTE: HIDE API KEY BEFORE PUSHING PRODUCTION CODE -->
+  <!-- Google Maps API || REPLACE 'HIDDEN_KEY' WITH REAL KEY BEFORE RUNNING -->
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=***REMOVED***&callback=initMap"
+  <script src="https://maps.googleapis.com/maps/api/js?key=HIDDEN_KEY&callback=initMap"
     async defer>
   </script>
 
@@ -114,6 +114,7 @@
 
   <!-- Load in sweetalert2 website and custom main.js file-->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+  <script type="text/javascript" src="{% static 'js/config.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
 </body>

@@ -95,7 +95,7 @@ async function geocode(addressStr, orgName) {
   await axios.get('https://maps.googleapis.com/maps/api/geocode/json?', {
     params: {
       address: addressStr,
-      key: '***REMOVED***' // TODO: !!! HIDE THIS KEY BEFORE DISTRIBUTION BUILD !!!
+      key: config.API_KEY
     }
   }).then(response => {
     // log full response
