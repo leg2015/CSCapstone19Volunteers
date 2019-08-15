@@ -291,6 +291,20 @@ function addOrganizationPin(orgID, json_addresses, orgName) {
   return;
 }
 
+// This function will open the organization's website in a new tab
+function openSite(website){
+  if (!website.startsWith('www.')){ 
+    if (!website.startsWith('http')){ // URL: example.com
+      website = 'www.'+website;
+    }
+  }
+  if (website.startsWith('www.')){ // URL: www.example.com
+    website = 'http://'+website;
+  }
+  // URL should be in the form http://www.example.com or https://www.example.com at this point
+  window.open(website, '_blank');
+}
+
 // Run these jQuery/SWAL2 functionalities once DOM has been loaded
 $( document ).ready(function() {
   // console.log(jsonData);

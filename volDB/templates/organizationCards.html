@@ -36,7 +36,7 @@
       {% if organization.website == '.' %}
 
       {% else %}
-      <a href="{{ organization.website }}" class="website_link" target="_blank"><button type="button" class="fill">Website</button></a>
+      <button type="button" class="fill" onClick="openSite ( {{ organization.website|stringformat:'a' }} )">Website</button>
       {% endif %}
       <button type="button" class="fill mapMarkerToggle" onClick="addOrganizationPin( {{ organization.orgID }}, {{ json_data }}, {{ organization.name|stringformat:'a' }} )">Show on Map</button>
     </div>
