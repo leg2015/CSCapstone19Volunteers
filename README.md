@@ -1,6 +1,10 @@
 # CSCapstone19Volunteers
 Project repository for Southwestern's Computer Science Capstone 2019 Volunteers group. This repo satisfies the requirements for our 2019 Senior Seminar in Software Engineering project. Our group members are [Taylor Axtell](https://github.com/ANapForLunch), [Sara Boyd](https://github.com/kayakingCellist), [Lauren Gillespie](https://github.com/leg2015), [Danielle Orbach](https://github.com/orbachd), and [Colin Scruggs](https://github.com/colinscruggs). Our capstone professor is [Dr. Barbara Anthony](https://github.com/anthonybsouthwestern)
 
+# ***Deploy Note ***
+This branch contains the preliminary files necessary for deolpying to [Google App Engine](https://cloud.google.com/appengine/). (.gcloudignore, app.yaml, main.py) In the current state, we get the error 'cannot import django'.
+
+
 ## What is Voluntunity?
 Voluntunity is an interactive website for finding volunteer opportunities in the Austin-Georgetown-San Marcos area that is targeted towards [Southwestern University](www.southwestern.edu "Southwestern Homepage") students and other Georgetown residents. Users can search for opportunities based on the type of volunteer opportunity and the location.
 
