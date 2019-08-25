@@ -98,7 +98,7 @@ def results(request):
         
     if indexForm.is_valid():
         form_data = indexForm.cleaned_data
-        results = Organization.objects.exclude(isVisible=False).exclude(mission__exact='.').exclude(mission__exact="").exclude(location__location='.').exclude(category__category=".")
+        results = Organization.objects.exclude(isVisible=False).exclude(mission__exact='.').exclude(mission__exact="").exclude(category__category=".")
         location = form_data['location']
         keys = keys = form_data.keys()
         if form_data['location'] != None:
