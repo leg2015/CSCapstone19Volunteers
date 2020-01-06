@@ -14,7 +14,7 @@ From the landing page, simply select the category or city where you're intereste
 Check out our [wiki](https://github.com/leg2015/CSCapstone19Volunteers/wiki) for detailed instructions on how to spin up a local proxy of the site. Hopefully soon we'll have a public website you can navigate to instead.
 
 ## Prerequisites
-Make sure you have [Django](https://www.djangoproject.com/start/) and the [Google Cloud SDK](https://cloud.google.com/sdk/). There are detailed instructions for downloading and integrating both also on the [wiki](https://github.com/leg2015/CSCapstone19Volunteers/wiki).
+Make sure you have [Django](https://www.djangoproject.com/start/) and the [Google Cloud SDK](https://cloud.google.com/sdk/). There are detailed instructions for downloading and integrating both also on the [wiki](https://github.com/leg2015/CSCapstone19Volunteers/wiki). Note: For the original capstone project, we developed this site using the GCP ecosystem, but for deployment, we are migrating to the AWS ecosystem. For more information on the migration, see [this](https://github.com/leg2015/CSCapstone19Volunteers/wiki/GCP--to--AWS-Migration) page on our wiki.
 
 ## Deployment
 ... we're getting there (eventually)
