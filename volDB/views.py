@@ -80,7 +80,11 @@ def logout(request):
 
 # custom login page: will render login.html upon request
 def login(self, request):
-    return render(request, 'registration/login.html')
+    context = RequestContext(request)
+    context_dict = {}
+    context_dict.update(csrf(request))
+    return render_to_response('registration/login.html', context_dict, context)
+    # return render(request, 'registration/login.html')
 
 # query a set by category, return updated queryset
 def queryCategory(Queryset, cat):
